@@ -1,0 +1,69 @@
+// Copyright (C) (2020) (Mathieu Bergeron) (mathieu.bergeron@cmontmorency.qc.ca)
+//
+// This file is part of tutoriels4f5
+//
+// tutoriels4f5 is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// tutoriels4f5 is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with aquiletour.  If not, see <https://www.gnu.org/licenses/>
+
+
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+eclipse {
+    classpath {
+        file {
+            whenMerged {
+                classpath ->
+                    def jre = entries.find { it.path.contains 'org.eclipse.jdt.launching.JRE_CONTAINER' }
+                    jre.accessRules.add(new org.gradle.plugins.ide.eclipse.model.AccessRule('0', 'javafx/**'))
+
+                    def ntro = entries.find { it.path.contains 'ntro' }
+                    entries.remove ntro
+                    entries += new org.gradle.plugins.ide.eclipse.model.Library(fileReference(file(ntro.publication.path)))
+            }
+        }
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Librairie Ntro
+    implementation 'ca.ntro4f5:ntro:0.1' 
+
+    // Json serialization
+    // https://github.com/google/gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Websocket
+    // https://github.com/TooTallNate/Java-WebSocket
+    implementation 'org.java-websocket:Java-WebSocket:1.4.0'
+}
+
+
+tasks.clean {
+    doFirst {
+        new File("${project.projectDir}/build").deleteDir()
+        new File("${project.projectDir}/bin").deleteDir()
+        new File("${project.projectDir}/entrepot").deleteDir()
+    }
+}

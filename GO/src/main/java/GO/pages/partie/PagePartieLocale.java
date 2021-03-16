@@ -1,17 +1,28 @@
 package GO.pages.partie;
 
 import static GO.Constantes.IDS_MODELES_TESTS;
+import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
+import static GO.Constantes.HAUTEUR_PIXELS;
+import static GO.Constantes.IDS_MODELES_TESTS;
+import static GO.Constantes.LARGEUR_PIXELS;
 
 import java.util.Random;
 
 import GO.pages.partie.modeles.JetonLectureSeule;
 import GO.pages.partie.modeles.PartieLocale;
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
+import ntro.javafx.ChargeurDeVue;
 import ntro.javafx.Initialisateur;
+import ntro.mvc.controleurs.FabriqueControleur;
 import ntro.mvc.modeles.EntrepotDeModeles;
 import ntro.systeme.Systeme;
+import GO.pages.partie.afficheurs.AfficheurPartieLocale;
+import GO.pages.partie.controleurs.ControleurPartieLocale;
+import GO.pages.partie.vues.VuePartieLocale;
 
 
 public class PagePartieLocale extends Application {
@@ -34,24 +45,27 @@ public class PagePartieLocale extends Application {
 	public void start(Stage fenetrePrincipale) throws Exception {
 		J.appel(this);
 		
+		ChargeurDeVue<VuePartieLocale> chargeur;
+		chargeur = new ChargeurDeVue<VuePartieLocale>(CHEMIN_PARTIE_LOCALE_FXML);
+
+		VuePartieLocale vue = chargeur.getVue();
 		
 		String idModeleTest = IDS_MODELES_TESTS[alea.nextInt(IDS_MODELES_TESTS.length)];
 		PartieLocale partie = EntrepotDeModeles.obtenirModele(PartieLocale.class, idModeleTest);
 		
+		AfficheurPartieLocale afficheur = new AfficheurPartieLocale();
 		
-		
-		J.valeurs(partie.getId(), partie.getTaille());
-		
-		
-			
-		for(int i = 0; i < partie.getTable().getJetons().size(); i++) {
-			
-			
-			JetonLectureSeule jeton = partie.getTable().getJetons().get(i);
+		DoitEtre.nonNul(vue);
 
-				J.valeurs(jeton.getIndiceX(), jeton.getIndiceY(), jeton.getCouleur().name());
-		}
+		FabriqueControleur.creerControleur(ControleurPartieLocale.class, partie, vue, afficheur);
 
-		Systeme.quitter();
+		Scene scene = chargeur.nouvelleScene(LARGEUR_PIXELS, HAUTEUR_PIXELS);
+
+		fenetrePrincipale.setScene(scene);
+		
+		fenetrePrincipale.setMinWidth(LARGEUR_PIXELS);
+		fenetrePrincipale.setMinHeight(HAUTEUR_PIXELS);
+
+		fenetrePrincipale.show();
 	}
 }

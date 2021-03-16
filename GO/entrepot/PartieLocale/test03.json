@@ -1,6 +1,6 @@
 {
   "taille": 19,
-  "couleurCourante": "JAUNE",
+  "couleurCourante": "BLANC",
   "table": {
     "jetons": [
 		{"indiceX": 3, "indiceY": 8, "couleur": "NOIR"},

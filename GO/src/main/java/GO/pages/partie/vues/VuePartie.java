@@ -1,31 +1,17 @@
-// Copyright (C) (2020) (Mathieu Bergeron) (mathieu.bergeron@cmontmorency.qc.ca)
-//
-// This file is part of tutoriels4f5
-//
-// tutoriels4f5 is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// tutoriels4f5 is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with aquiletour.  If not, see <https://www.gnu.org/licenses/>
-
-
 package GO.pages.partie.vues;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ntro.commandes.FabriqueCommande;
 import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
 import ntro.mvc.Vue;
+import GO.commandes.jouer_ici.JouerIciPourEnvoi;
+import GO.commandes.jouer_ici.JouerIci;
 import GO.Constantes;
 import GO.enumeration.Couleur;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -34,6 +20,7 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.event.EventHandler;
 
 public abstract class VuePartie implements Vue, Initializable {
 
@@ -42,6 +29,9 @@ public abstract class VuePartie implements Vue, Initializable {
     private VBox conteneurGrille;
     
     private Button[][] cases;
+    
+	private JouerIciPourEnvoi jouerIciPourEnvoi;
+
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -93,11 +83,31 @@ public abstract class VuePartie implements Vue, Initializable {
 	@Override
 	public void obtenirCommandesPourEnvoi() {
 		J.appel(this);
+		
+		jouerIciPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(JouerIci.class);
+		
 	}
 
 	@Override
 	public void installerCapteursEvenementsUsager() {
 		J.appel(this);
+		for(int i = 0; i < cases.length; i++) {
+			for(int y = 0; y < cases[i].length; y++) {
+				
+				final int indiceX = i;
+				final int indiceY = y;
+				
+				cases[i][y].setOnAction(new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent event) {
+						J.appel(this);
+						
+						jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
+						jouerIciPourEnvoi.envoyerCommande();
+					}
+				});
+			}
+		}
 	}
 
 	@Override
@@ -123,7 +133,6 @@ public abstract class VuePartie implements Vue, Initializable {
 		if(siIndicesValides(indiceRangee, indiceColonne)) {
 
 			Button _case = cases[indiceRangee][indiceColonne];
-			
 			switch(couleur) {
 				case BLANC:
 					_case.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));

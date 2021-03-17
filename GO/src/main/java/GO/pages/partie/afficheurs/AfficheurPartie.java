@@ -65,18 +65,8 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
 			                   Couleur couleur,
 			                   V vue) {
 		J.appel(this);
-		
-		int[] indiceRangeeCoordonneesGraphiques = convertirEnCoordonneesGraphiques(tailleTable, indiceX ,indiceY);
 
-		vue.afficherJeton(indiceRangeeCoordonneesGraphiques[0],indiceRangeeCoordonneesGraphiques[1], couleur);
-	}
-	
-	private int[] convertirEnCoordonneesGraphiques(int tailleTable, int indiceX ,int indiceY) {
-		J.appel(this);
-		int[] calcul = new int[2];
-		calcul[0] = indiceX-1;
-		calcul[1] = tailleTable - indiceY;
-		return calcul;
+		vue.afficherJeton(indiceX,indiceY, couleur);
 	}
 
 }

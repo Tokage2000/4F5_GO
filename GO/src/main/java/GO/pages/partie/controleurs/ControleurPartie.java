@@ -4,6 +4,9 @@ package GO.pages.partie.controleurs;
 
 import ntro.debogage.J;
 import ntro.mvc.controleurs.ControleurModeleVue;
+import ntro.mvc.controleurs.RecepteurCommandeMVC;
+import GO.commandes.jouer_ici.JouerIci;
+import GO.commandes.jouer_ici.JouerIciRecue;
 import GO.pages.partie.afficheurs.AfficheurPartie;
 import GO.pages.partie.modeles.Partie;
 import GO.pages.partie.modeles.PartieLectureSeule;
@@ -36,5 +39,21 @@ public abstract class  ControleurPartie<PLS extends PartieLectureSeule,
 	@Override
 	protected void installerReceptionCommandes() {
 		J.appel(this);
-	} 
+		
+		installerRecepteurCommande(JouerIci.class, new RecepteurCommandeMVC<JouerIciRecue>() {
+			@Override
+			public void executerCommandeMVC(JouerIciRecue commande) {
+				J.appel(this);
+				
+				reagirCommandeJouerIci(commande);
+				
+			}
+		});
+	}
+	
+	protected void reagirCommandeJouerIci(JouerIciRecue jouerIciRecue) {
+		J.appel(this);
+
+			getModele().jouerIci(jouerIciRecue.getIndiceX(),jouerIciRecue.getIndiceY());
+	}
 }

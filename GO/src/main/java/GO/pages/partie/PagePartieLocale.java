@@ -5,6 +5,10 @@ import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
 import static GO.Constantes.HAUTEUR_PIXELS;
 import static GO.Constantes.IDS_MODELES_TESTS;
 import static GO.Constantes.LARGEUR_PIXELS;
+import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
+import static GO.Constantes.HAUTEUR_PIXELS;
+import static GO.Constantes.ID_MODELE_PAR_DEFAUT;
+import static GO.Constantes.LARGEUR_PIXELS;
 
 import java.util.Random;
 
@@ -50,8 +54,7 @@ public class PagePartieLocale extends Application {
 
 		VuePartieLocale vue = chargeur.getVue();
 		
-		String idModeleTest = IDS_MODELES_TESTS[alea.nextInt(IDS_MODELES_TESTS.length)];
-		PartieLocale partie = EntrepotDeModeles.obtenirModele(PartieLocale.class, idModeleTest);
+		PartieLocale partie = EntrepotDeModeles.creerModele(PartieLocale.class, ID_MODELE_PAR_DEFAUT);
 		
 		AfficheurPartieLocale afficheur = new AfficheurPartieLocale();
 		

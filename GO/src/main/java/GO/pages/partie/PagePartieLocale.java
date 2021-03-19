@@ -1,9 +1,7 @@
 package GO.pages.partie;
 
-import static GO.Constantes.IDS_MODELES_TESTS;
 import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
 import static GO.Constantes.HAUTEUR_PIXELS;
-import static GO.Constantes.IDS_MODELES_TESTS;
 import static GO.Constantes.LARGEUR_PIXELS;
 import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
 import static GO.Constantes.HAUTEUR_PIXELS;

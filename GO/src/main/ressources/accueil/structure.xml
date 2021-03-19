@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+    fx:controller="GO.pages.accueil.VueAccueil">
+    <BorderPane>
+        <top>
+            <MenuBar>
+                <menus>
+                <Menu text="Partie locale">
+                    <items>
+                    <MenuItem fx:id="menuNouvellePartieLocale" text="Nouvelle partie"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="menuParametres" text="Parametres"/>
+					<MenuItem fx:id="menuResultats" text="Resultats"/>
+					<MenuItem fx:id="menuReplay" text="Replay"/>
+                    <MenuItem fx:id="menuQuitter" text="Quitter"/>
+                    </items>
+                </Menu>
+            </menus>
+            </MenuBar>
+        </top>
+        <center>
+        <HBox>
+			<VBox fx:id="conteneurPartie"/>
+		</HBox>
+        </center>
+    </BorderPane>
+</VBox>

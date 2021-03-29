@@ -201,6 +201,18 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 				                                 HAUTEUR_PARAMETRES_PIXELS);
 		
 		resultats = EntrepotDeModeles.creerModele(Resultats.class, ID_MODELE_PAR_DEFAUT);
+		//1 = Noir 2 = Blanc
+		int tableau[][] = new int[partieLocale.getTaille()][partieLocale.getTaille()];
+		
+		for(int i = 0; i < partieLocale.getTable().getJetons().size(); i++) {
+			if(partieLocale.getTable().getJetons().get(i).getCouleur() == Couleur.NOIR) {
+				tableau[partieLocale.getTable().getJetons().get(i).getIndiceY()][partieLocale.getTable().getJetons().get(i).getIndiceX()] = 1;
+			}else if(partieLocale.getTable().getJetons().get(i).getCouleur() == Couleur.BLANC) {
+				tableau[partieLocale.getTable().getJetons().get(i).getIndiceY()][partieLocale.getTable().getJetons().get(i).getIndiceX()] = 2;
+			}
+		}
+		
+		resultats.getTableau(tableau);
 		
 		AfficheurResultats afficheurResultats = new AfficheurResultats();
 		
@@ -351,6 +363,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		dialogueReplay.setMaxWidth(LARGEUR_REPLAY_PIXELS_MAX);
 		dialogueReplay.setMaxHeight(HAUTEUR_REPLAY_PIXELS_MAX);
 	}
+	
 	//Demander une meilleur facon de transferer les données
 	private void fermerReplay() {
 		J.appel(this);

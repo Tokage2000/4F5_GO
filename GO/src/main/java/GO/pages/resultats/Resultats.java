@@ -1,6 +1,8 @@
 
 package GO.pages.resultats;
 
+import java.util.Arrays;
+
 import GO.enumerations.Couleur;
 import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
@@ -10,11 +12,12 @@ public class Resultats extends Modele<ResultatsLectureSeule> implements Resultat
 
 	private Couleur Gagnant;
 	private int nombreTours,pointsBlanc, pointsNoir;
+	private transient int[][] tableau;
 
 	@Override
 	public void apresCreation() {
 		J.appel(this);
-
+		
 	}
 
 	@Override
@@ -28,6 +31,12 @@ public class Resultats extends Modele<ResultatsLectureSeule> implements Resultat
 		J.appel(this);
 
 		return Gagnant;
+	}
+	
+	
+	public void getTableau(int[][] tableau) {
+		J.appel(this);
+		this.tableau = tableau;
 	}
 
 	@Override

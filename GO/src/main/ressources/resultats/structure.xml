@@ -31,7 +31,6 @@
     
      <HBox alignment="center">
         <Button text="Acceuil" fx:id="accueil" />
-        <Button text="Replay?" fx:id="replay" />
         <Button text="Quitter" fx:id="quitter" />
     </HBox>
     

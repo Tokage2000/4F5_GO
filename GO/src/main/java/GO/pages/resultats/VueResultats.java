@@ -33,7 +33,7 @@ public class VueResultats implements Vue, Initializable {
 	private QuitterPourEnvoi fermerJeux;
 	
 	@FXML
-	private Button quitter,accueil,replay;
+	private Button quitter,accueil;
 
 	// private FermerParametresPourEnvoi fermerParamatres;
 	// private ChoisirTailleGrillePourEnvoi choisirTailleGrille;
@@ -45,7 +45,7 @@ public class VueResultats implements Vue, Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		DoitEtre.nonNul(quitter);
 		DoitEtre.nonNul(accueil);
-		DoitEtre.nonNul(replay);
+		
 
 		J.appel(this);
 

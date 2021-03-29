@@ -1,0 +1,19 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+repositories {
+    jcenter()
+}
+
+gradlePlugin {
+    plugins {
+        Local4F5Plugin {
+            id = 'local-4f5-plugin'
+            implementationClass = 'Local4F5PluginPlugin'
+        }
+    }
+}
+
+
+

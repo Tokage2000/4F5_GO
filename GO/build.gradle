@@ -1,0 +1,10 @@
+plugins {
+	id 'local-4f5-plugin'
+}
+
+task partie_locale (type:JavaExec) {
+	dependsOn 'classes'
+	main = 'GO.pages.partie.PagePartieLocale'
+	classpath = sourceSets.main.runtimeClasspath
+	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}

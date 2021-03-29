@@ -1,0 +1,12 @@
+{
+  "taille": 9,
+  "couleurCourante": "BLANC",
+  "table": {
+    "jetons": [
+		{"indiceX": 0, "indiceY": 0, "couleur": "NOIR"},
+		{"indiceX": 1, "indiceY": 1, "couleur": "BLANC"},
+		{"indiceX": 2, "indiceY": 2, "couleur": "NOIR"}
+    ]
+  },
+  "id":"test01"
+}

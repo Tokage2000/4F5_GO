@@ -8,9 +8,9 @@ import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
 import ntro.mvc.Vue;
 import GO.commandes.jouer_ici.JouerIciPourEnvoi;
+import GO.enumerations.Couleur;
 import GO.commandes.jouer_ici.JouerIci;
 import GO.Constantes;
-import GO.enumeration.Couleur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -91,19 +91,22 @@ public abstract class VuePartie implements Vue, Initializable {
 	@Override
 	public void installerCapteursEvenementsUsager() {
 		J.appel(this);
-		for(int i = 0; i < cases.length; i++) {
-			for(int y = 0; y < cases[i].length; y++) {
+		for(int x = 0; x < cases.length; x++) {
+			for(int y = 0; y < cases[x].length; y++) {
 				
-				final int indiceX = i;
+				final int indiceX = x;
 				final int indiceY = y;
 				
-				cases[i][y].setOnAction(new EventHandler<ActionEvent>() {
+				cases[x][y].setOnAction(new EventHandler<ActionEvent>() {
 					@Override
 					public void handle(ActionEvent event) {
 						J.appel(this);
 						
-						jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
-						jouerIciPourEnvoi.envoyerCommande();
+						if(true){
+							jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
+							jouerIciPourEnvoi.envoyerCommande();
+				}
+						
 					}
 				});
 			}
@@ -113,6 +116,10 @@ public abstract class VuePartie implements Vue, Initializable {
 	@Override
 	public void verifierCommandesPossibles() {
 		J.appel(this);
+		
+		
+			
+		
 	} 
 	
 	private boolean siIndicesValides(int indiceColonne, int indiceRangee) {

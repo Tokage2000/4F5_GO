@@ -1,7 +1,7 @@
 package GO.pages.partie.modeles;
 
 import GO.Constantes;
-import GO.enumeration.Couleur;
+import GO.enumerations.Couleur;
 import ntro.debogage.J;
 import ntro.mvc.modeles.Modele;
 
@@ -29,7 +29,7 @@ public class      Partie<PLS extends PartieLectureSeule>
 		J.appel(this);
 
 		table = new Table();
-		table.apresCreation(taille);
+		table.apresCreation();
 	}
 
 	@Override

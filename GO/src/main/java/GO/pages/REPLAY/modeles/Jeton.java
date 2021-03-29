@@ -1,10 +1,10 @@
-package GO.pages.partie.modeles;
+package GO.pages.REPLAY.modeles;
 
 import GO.enumerations.Couleur;
 import ntro.debogage.J;
 
 public class Jeton implements JetonLectureSeule {
-	
+
 	private Couleur couleur;
 	private int indiceX;
 	private int indiceY;
@@ -29,22 +29,24 @@ public class Jeton implements JetonLectureSeule {
 
 		return indiceY;
 	}
-	
-	public void setIndiceY(int indiceY) {
-		J.appel(this);
-		
-		this.indiceY = indiceY;
-	}
-	
+
+
 	public void setIndiceX(int indiceX) {
 		J.appel(this);
-		
+
 		this.indiceX = indiceX;
+	}
+
+	public void setIndiceY(int indiceY) {
+		J.appel(this);
+
+		this.indiceY = indiceY;
 	}
 
 	public void setCouleur(Couleur couleur) {
 		J.appel(this);
-		
+
 		this.couleur = couleur;
 	}
+
 }

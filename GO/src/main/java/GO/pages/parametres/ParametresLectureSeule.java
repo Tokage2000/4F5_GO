@@ -1,12 +1,11 @@
-
 package GO.pages.parametres;
 
-import GO.enumeration.TailleTable;
+import GO.enumerations.Couleur;
+import GO.enumerations.TailleTable;
 import ntro.mvc.modeles.ModeleLectureSeule;
 
 public interface ParametresLectureSeule extends ModeleLectureSeule {
 	
-	
+	Couleur getQuiEsTu();
 	TailleTable getTailleTable();
-
 }

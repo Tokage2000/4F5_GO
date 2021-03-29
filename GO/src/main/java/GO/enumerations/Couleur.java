@@ -1,4 +1,4 @@
-package GO.enumeration;
+package GO.enumerations;
 
 public enum Couleur {
 

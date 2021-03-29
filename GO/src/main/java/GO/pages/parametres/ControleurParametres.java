@@ -1,5 +1,3 @@
-
-
 package GO.pages.parametres;
 
 import ntro.debogage.DoitEtre;
@@ -8,10 +6,12 @@ import ntro.messages.FabriqueMessage;
 import ntro.mvc.controleurs.ControleurModeleVue;
 import ntro.mvc.controleurs.RecepteurCommandeMVC;
 import ntro.mvc.controleurs.RecepteurMessageMVC;
-import GO.commandes.choisir_taille_grille.ChoisirTailleGrille;
-import GO.commandes.choisir_taille_grille.ChoisirTailleGrilleRecue;
-import GO.enumeration.Couleur;
-import GO.enumeration.TailleTable;
+import GO.commandes.choisir_Qui_Es_Tu.ChoisirQuiEsTu;
+import GO.commandes.choisir_Qui_Es_Tu.ChoisirQuiEsTuRecue;
+import GO.commandes.choisir_Taille_Table.ChoisirTailleTable;
+import GO.commandes.choisir_Taille_Table.ChoisirTailleTableRecue;
+import GO.enumerations.Couleur;
+import GO.enumerations.TailleTable;
 
 public class   ControleurParametres 
        extends ControleurModeleVue<ParametresLectureSeule, 
@@ -23,16 +23,30 @@ public class   ControleurParametres
 	protected void installerReceptionCommandes() {
 		J.appel(this);
 		
-		installerRecepteurCommande(ChoisirTailleGrille.class, new RecepteurCommandeMVC<ChoisirTailleGrilleRecue>() {
+		installerRecepteurCommande(ChoisirQuiEsTu.class, new RecepteurCommandeMVC<ChoisirQuiEsTuRecue>() {
+			
 			@Override
-			public void executerCommandeMVC(ChoisirTailleGrilleRecue commande) {
+			public void executerCommandeMVC(ChoisirQuiEsTuRecue commande) {
 				J.appel(this);
 				
-				TailleTable tailleGrille = commande.getTailleTable();
+				Couleur quiEsTu = commande.getCouleur();
+
+				DoitEtre.nonNul(quiEsTu);
+
+				getModele().choisirQuiEsTu(quiEsTu);
+			}
+		});
+		
+		installerRecepteurCommande(ChoisirTailleTable.class, new RecepteurCommandeMVC<ChoisirTailleTableRecue>() {
+			@Override
+			public void executerCommandeMVC(ChoisirTailleTableRecue commande) {
+				J.appel(this);
 				
-				DoitEtre.nonNul(tailleGrille);
+				TailleTable tailleTable = commande.getTailleTable();
 				
-				getModele().choisirTailleGrille(tailleGrille);
+				DoitEtre.nonNul(tailleTable);
+				
+				getModele().choisirTailleTable(tailleTable);
 			}
 		});
 	}

@@ -3,15 +3,15 @@ package GO.pages.partie.modeles;
 import java.util.ArrayList;
 import java.util.List;
 
-import GO.enumeration.Couleur;
-import GO.enumeration.TailleTable;
+import GO.enumerations.Couleur;
+import GO.enumerations.TailleTable;
 import ntro.debogage.J;
 
 public class Table implements TableLectureSeule {
 	
 	private List<Jeton> jetons = new ArrayList<>();
 
-	public void apresCreation(int taille) {
+	public void apresCreation() {
 		J.appel(this);
 
 		jetons = new ArrayList<>();

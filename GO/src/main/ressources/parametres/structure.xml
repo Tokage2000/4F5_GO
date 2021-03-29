@@ -1,44 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) (2020) (Mathieu Bergeron) (mathieu.bergeron@cmontmorency.qc.ca)
-//
-// This file is part of tutoriels4f5
-//
-// tutoriels4f5 is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// tutoriels4f5 is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with aquiletour.  If not, see <https://www.gnu.org/licenses/> -->
+<?import javafx.scene.layout.VBox ?>
+<?import javafx.scene.layout.HBox ?>
+<?import javafx.scene.text.Text ?>
+<?import javafx.scene.control.Button ?>
+<?import javafx.scene.control.CheckBox ?>
+<?import javafx.scene.control.ComboBox ?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ComboBox?>
-
-<VBox xmlns:fx="http://javafx.com/fxml" alignment="center"
-    fx:controller="GO.pages.parametres.VueParametres">
+<VBox xmlns:fx="http://javafx.com/fxml" alignment="center" fx:controller="GO.pages.parametres.VueParametres">
 
 	<VBox>
 		<HBox alignment="center">
-			<Text textAlignment="CENTER" text="Taille de la grille?"/>
+			<Text textAlignment="CENTER" text="Taille de la table?" />
 		</HBox>
 		<HBox alignment="center">
-	        <ComboBox fx:id="choixTaille"/>
+			<ComboBox fx:id="choixTaille" />
 		</HBox>
 
+		<HBox alignment="center">
+			<Text textAlignment="CENTER" text="Qui commence?" />
+		</HBox>
 
+		<VBox>
+			<HBox alignment="center">
+				<Button fx:id="caseBLANC" />
+				<CheckBox fx:id="checkBLANC" />
+			</HBox>
+
+			<HBox alignment="center">
+				<Button fx:id="caseNOIR" />
+				<CheckBox fx:id="checkNOIR" />
+			</HBox>
+
+		</VBox>
 	</VBox>
 
 	<HBox alignment="center">
-		<Button text="C'est bon!" fx:id="boutonOk"/>
+		<Button text="Sauvegarder" fx:id="boutonOk" />
+		<Button text="Annuler" fx:id="boutonAnnuler" />
 	</HBox>
-
 </VBox>

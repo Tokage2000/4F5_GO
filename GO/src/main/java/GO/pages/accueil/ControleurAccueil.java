@@ -212,7 +212,9 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 			}
 		}
 		
-		resultats.getTableau(tableau);
+		resultats.setTableau(tableau);
+		
+		resultats.setTaille(partieLocale.getTaille());
 		
 		AfficheurResultats afficheurResultats = new AfficheurResultats();
 		

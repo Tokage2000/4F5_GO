@@ -12,6 +12,7 @@ public class Resultats extends Modele<ResultatsLectureSeule> implements Resultat
 
 	private Couleur Gagnant;
 	private int nombreTours,pointsBlanc, pointsNoir;
+	private transient int taille;
 	private transient int[][] tableau;
 
 	@Override
@@ -34,9 +35,15 @@ public class Resultats extends Modele<ResultatsLectureSeule> implements Resultat
 	}
 	
 	
-	public void getTableau(int[][] tableau) {
+	public void setTableau(int[][] tableau) {
 		J.appel(this);
 		this.tableau = tableau;
+	}
+	
+	public void setTaille(int taille) {
+		J.appel(this);
+		this.taille = taille;
+		System.out.println(taille);
 	}
 
 	@Override
@@ -80,6 +87,8 @@ public class Resultats extends Modele<ResultatsLectureSeule> implements Resultat
 
 		this.pointsNoir = points;
 	}
+
+
 	
 	
 }

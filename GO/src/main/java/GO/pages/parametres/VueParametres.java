@@ -1,21 +1,3 @@
-// Copyright (C) (2020) (Mathieu Bergeron) (mathieu.bergeron@cmontmorency.qc.ca)
-//
-// This file is part of tutoriels4f5
-//
-// tutoriels4f5 is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// tutoriels4f5 is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with aquiletour.  If not, see <https://www.gnu.org/licenses/>
-
-
 package GO.pages.parametres;
 
 import java.net.URL;
@@ -27,12 +9,16 @@ import ntro.commandes.FabriqueCommande;
 import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
 import ntro.mvc.Vue;
-import GO.commandes.choisir_taille_grille.ChoisirTailleGrillePourEnvoi;
-import GO.commandes.choisir_taille_grille.ChoisirTailleGrille;
-import GO.commandes.fermer_parametres.FermerParametres;
 import GO.commandes.fermer_parametres.FermerParametresPourEnvoi;
-import GO.enumeration.Couleur;
-import GO.enumeration.TailleTable;
+import GO.commandes.choisir_Qui_Es_Tu.ChoisirQuiEsTu;
+import GO.commandes.choisir_Qui_Es_Tu.ChoisirQuiEsTuPourEnvoi;
+import GO.commandes.choisir_Taille_Table.ChoisirTailleTablePourEnvoi;
+import GO.commandes.fermer_parametres.FermerParametres;
+import GO.commandes.choisir_Taille_Table.ChoisirTailleTable;
+
+import GO.enumerations.Couleur;
+import GO.enumerations.TailleTable;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -44,14 +30,21 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.paint.Color;
 
+
 public class VueParametres implements Vue, Initializable {
 	
+	private ChoisirQuiEsTuPourEnvoi choisirQuiEsTu;
+	private ChoisirTailleTablePourEnvoi choisirTailleTable;
 	private FermerParametresPourEnvoi fermerParametres;
-	private ChoisirTailleGrillePourEnvoi choisirTailleGrille;
+	
+	private Couleur quiEsTu = Couleur.BLANC;
+	private TailleTable taille = TailleTable.MOYENNE;
 
+	@FXML 
+	private Button caseNOIR, caseBLANC, boutonOk, boutonAnnuler;
 	
 	@FXML
-	private Button boutonOk;
+	private CheckBox checkNOIR, checkBLANC;
 
 	@FXML
 	private ComboBox<String> choixTaille;
@@ -63,10 +56,16 @@ public class VueParametres implements Vue, Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		J.appel(this);
 		
-
-		DoitEtre.nonNul(boutonOk);
+		DoitEtre.nonNul(caseNOIR);
+		DoitEtre.nonNul(caseBLANC);
+		DoitEtre.nonNul(checkNOIR);
+		DoitEtre.nonNul(checkBLANC);
 		DoitEtre.nonNul(choixTaille);
+		
 
+
+		caseNOIR.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
+		caseBLANC.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
 		
 		initialiserChoixTaille(resources);
 	}
@@ -74,16 +73,15 @@ public class VueParametres implements Vue, Initializable {
 	private void initialiserChoixTaille(ResourceBundle resources) {
 		J.appel(this);
 
-		for(TailleTable tailleGrille : TailleTable.values()) {
+		for(TailleTable tailleTable : TailleTable.values()) {
 			
-			String nomTaille = tailleGrille.name();
+			String nomTaille = tailleTable.name();
 			
 			choixTaille.getItems().add(nomTaille);
 			
-			tailleSelonNom.put(nomTaille, tailleGrille);
-			nomSelonTaille.put(tailleGrille, nomTaille);
+			tailleSelonNom.put(nomTaille, tailleTable);
+			nomSelonTaille.put(tailleTable, nomTaille);
 		}
-
 		choixTaille.getSelectionModel().clearAndSelect(0);
 	}
 
@@ -92,19 +90,32 @@ public class VueParametres implements Vue, Initializable {
 		J.appel(this);
 		
 		fermerParametres = FabriqueCommande.obtenirCommandePourEnvoi(FermerParametres.class);
-		choisirTailleGrille = FabriqueCommande.obtenirCommandePourEnvoi(ChoisirTailleGrille.class);
+		choisirQuiEsTu = FabriqueCommande.obtenirCommandePourEnvoi(ChoisirQuiEsTu.class);
+		choisirTailleTable = FabriqueCommande.obtenirCommandePourEnvoi(ChoisirTailleTable.class);
 	}
 
 	@Override
 	public void installerCapteursEvenementsUsager() {
 		J.appel(this);
-
-		boutonOk.setOnAction(new EventHandler<ActionEvent>() {
+		
+		checkNOIR.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				J.appel(this);
+				
+				quiEsTu = Couleur.NOIR;
+				afficherQuiEsTu(Couleur.NOIR);
+			}
+		});
+		
+		checkBLANC.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				J.appel(this);
 
-				fermerParametres.envoyerCommande();
+				quiEsTu = Couleur.BLANC;
+				afficherQuiEsTu(Couleur.BLANC);
+
 			}
 		});
 
@@ -114,27 +125,72 @@ public class VueParametres implements Vue, Initializable {
 				J.appel(this);
 				
 				String nomTailleChoisie = choixTaille.getSelectionModel().getSelectedItem();
+			
 				
 				TailleTable tailleChoisie = tailleSelonNom.get(nomTailleChoisie);
 				
-				choisirTailleGrille.setTailleTable(tailleChoisie);
-				choisirTailleGrille.envoyerCommande();
+				
+				taille = tailleChoisie;
+				
+				
 			}
 		});
 		
+		boutonOk.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				J.appel(this);
+				
+				
+				
+				choisirQuiEsTu.setCouleur(quiEsTu);
+				choisirTailleTable.setTailleTable(taille);
+				
+				choisirQuiEsTu.envoyerCommande();
+				choisirTailleTable.envoyerCommande();
+				
+				fermerParametres.envoyerCommande();
+			}
+		});
+		
+		boutonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				J.appel(this);
+
+				fermerParametres.envoyerCommande();
+			}
+		});
 	}
 
 	@Override
 	public void verifierCommandesPossibles() {
 		J.appel(this);
 	}
-	
-	
 
-	public void afficherTailleGrille(TailleTable tailleGrille) {
+	public void afficherQuiEsTu(Couleur couleur) {
 		J.appel(this);
 		
-		String nomTaille = nomSelonTaille.get(tailleGrille);
+		DoitEtre.nonNul(couleur);
+
+		switch(couleur) {
+		
+		case NOIR:
+			checkNOIR.setSelected(true);
+			checkBLANC.setSelected(false);
+			break;
+
+		case BLANC:
+			checkNOIR.setSelected(false);
+			checkBLANC.setSelected(true);
+			break;
+		}
+	}
+
+	public void afficherTailleTable(TailleTable tailleTable) {
+		J.appel(this);
+		
+		String nomTaille = nomSelonTaille.get(tailleTable);
 		
 		int indiceTaille = choixTaille.getItems().indexOf(nomTaille);
 		

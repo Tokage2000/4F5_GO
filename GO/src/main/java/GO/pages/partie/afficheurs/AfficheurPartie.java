@@ -6,8 +6,8 @@ import java.util.List;
 
 import ntro.debogage.J;
 import ntro.mvc.Afficheur;
-import GO.enumeration.Couleur;
 import GO.pages.partie.modeles.TableLectureSeule;
+import GO.enumerations.Couleur;
 import GO.pages.partie.modeles.JetonLectureSeule;
 import GO.pages.partie.modeles.PartieLectureSeule;
 import GO.pages.partie.vues.VuePartie;
@@ -23,7 +23,6 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
 		J.appel(this);
 		
 		int taille = partieLectureSeule.getTaille();
-		System.out.println(taille);
 		
 		vue.creerTable(taille);
 	}

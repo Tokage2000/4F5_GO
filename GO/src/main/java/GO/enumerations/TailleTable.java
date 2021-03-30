@@ -1,4 +1,4 @@
-package GO.enumeration;
+package GO.enumerations;
 
 
 import ntro.debogage.J;

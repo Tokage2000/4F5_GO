@@ -1,59 +1,57 @@
-// Copyright (C) (2020) (Mathieu Bergeron) (mathieu.bergeron@cmontmorency.qc.ca)
-//
-// This file is part of tutoriels4f5
-//
-// tutoriels4f5 is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// tutoriels4f5 is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with aquiletour.  If not, see <https://www.gnu.org/licenses/>
-
-
 package GO.pages.parametres;
 
-import GO.enumeration.Couleur;
-import GO.enumeration.TailleTable;
+import GO.enumerations.Couleur;
+import GO.enumerations.TailleTable;
 import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
 import ntro.mvc.modeles.Modele;
 
 public class Parametres extends Modele<ParametresLectureSeule> implements ParametresLectureSeule {
-	
-	
-	private TailleTable tailleTable;
 
-	@Override
+	private Couleur quiEsTu;
+	private TailleTable tailleTable;
+	
+
+	@Override 
 	public void apresCreation() {
 		J.appel(this);
-
-
+		
+		quiEsTu = Couleur.BLANC;
 		tailleTable = TailleTable.MOYENNE;
 	}
-
-	@Override
+	
+	
+	@Override 
 	public void apresChargementJson() {
 		J.appel(this);
 		
-		
 		DoitEtre.nonNul(tailleTable);
+		DoitEtre.nonNul(quiEsTu);
 	}
-
-
-
-
-	public void choisirTailleGrille(TailleTable tailleGrille) {
+	
+	
+	@Override
+	public Couleur getQuiEsTu() {
 		J.appel(this);
 		
-		this.tailleTable = tailleGrille;
+		return quiEsTu;
 	}
-
+	
+	
+	public void choisirQuiEsTu(Couleur joueurQuiEsTu) {
+		J.appel(this);
+		
+		this.quiEsTu = joueurQuiEsTu;
+	}
+	
+	
+	public void choisirTailleTable(TailleTable tailleTable) {
+		J.appel(this);
+		
+		this.tailleTable = tailleTable;
+	}
+	
+	
 	@Override
 	public TailleTable getTailleTable() {
 		return tailleTable;

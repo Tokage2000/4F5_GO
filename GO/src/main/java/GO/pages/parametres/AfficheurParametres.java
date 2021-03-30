@@ -1,4 +1,3 @@
-
 package GO.pages.parametres;
 
 import ntro.debogage.J;
@@ -16,7 +15,8 @@ public class   AfficheurParametres
 	public void rafraichirAffichage(ParametresLectureSeule modeleLectureSeule, VueParametres vue) {
 		J.appel(this);
 
-		vue.afficherTailleGrille(modeleLectureSeule.getTailleTable());
+		vue.afficherTailleTable(modeleLectureSeule.getTailleTable());
+		vue.afficherQuiEsTu(modeleLectureSeule.getQuiEsTu());
 	}
 
 }

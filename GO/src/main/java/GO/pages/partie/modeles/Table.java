@@ -51,6 +51,21 @@ public class Table implements TableLectureSeule {
 	}
 	
 	
+	public boolean siPossibleJouerIci(int x, int y) {
+		
+		boolean returnValue = true;
+		
+		for(Jeton jeton : jetons) {
+			if(jeton.getIndiceX() == x && jeton.getIndiceY() == y) {
+				returnValue = false;
+				break;
+			}
+		}
+		
+		return returnValue;
+	}
+	
+	
 
 	
 }

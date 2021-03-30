@@ -48,9 +48,11 @@ public class      Partie<PLS extends PartieLectureSeule>
 
     public void effectuerCoup(int X, int Y) {
         J.appel(this);
-
+        
+        if(siPossibleJouerIci(X,Y)) {
         table.ajouterJeton(X, Y , couleurCourante);
         prochaineCouleur();
+        }
     }
 
     private void prochaineCouleur() {
@@ -107,13 +109,19 @@ public class      Partie<PLS extends PartieLectureSeule>
 			siPossible = false;
 		}
 		
+		if(!table.siPossibleJouerIci(X, Y)) {
+			siPossible = false;
+		}
+		
 		
 		
 		return siPossible;
 	}
 	
+	
+	
 	public boolean siCoordonneValide(int X, int Y) {
-		if(X > taille || Y > taille) {
+		if(X > taille || Y > taille) { 
 			return false;
 		}else {
 			return true;

@@ -43,7 +43,6 @@ public class Resultats extends Modele<ResultatsLectureSeule> implements Resultat
 	public void setTaille(int taille) {
 		J.appel(this);
 		this.taille = taille;
-		System.out.println(taille);
 	}
 
 	@Override

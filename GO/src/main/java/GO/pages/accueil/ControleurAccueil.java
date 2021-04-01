@@ -236,7 +236,8 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 				                                 HAUTEUR_REPLAY_PIXELS);
 		
 		replay = EntrepotDeModeles.creerModele(Replay.class, ID_MODELE_PAR_DEFAUT);
-			
+
+		
 		replay.setCote(partieLocale.getTaille());
 		
 		if(partieLocale.getTable().getJetons().size() > 0) {

@@ -146,7 +146,7 @@ public class VueReplay implements Vue, Initializable {
 		
 		return siValide;
 	}
-
+	//TODO trouver une façon de faire en sorte que les cases ne soit pas laides.
 	public void afficherJeton(int indiceRangee, int indiceColonne, Couleur couleur) {
 		J.appel(this);
 		

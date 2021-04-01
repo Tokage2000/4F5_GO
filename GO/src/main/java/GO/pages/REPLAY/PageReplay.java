@@ -45,7 +45,7 @@ public class PageReplay extends Application {
 
 		VueReplay vue = chargeur.getVue();
 
-		Replay replay = EntrepotDeModeles.obtenirModele(Replay.class, ID_MODELE_PAR_DEFAUT);
+		Replay replay = EntrepotDeModeles.creerModele(Replay.class, ID_MODELE_PAR_DEFAUT);
 
 		AfficheurReplay afficheur = new AfficheurReplay();
 

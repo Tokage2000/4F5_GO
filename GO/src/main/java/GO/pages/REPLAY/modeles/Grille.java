@@ -16,7 +16,6 @@ public class Grille implements GrilleLectureSeule {
 	private transient int max = 0;
 	private transient int nbJetons = 0;
 	
-	//A changer
 	private transient boolean update = true;
 	
 	public void apresCreation() {

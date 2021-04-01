@@ -2,9 +2,37 @@ plugins {
 	id 'local-4f5-plugin'
 }
 
-task partie_locale (type:JavaExec) {
+task GO_Main (type:JavaExec) {
+	dependsOn 'classes'
+	main = 'GO.client.MonClient'
+	classpath = sourceSets.main.runtimeClasspath
+	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
+task GO_PartieLocale (type:JavaExec) {
 	dependsOn 'classes'
 	main = 'GO.pages.partie.PagePartieLocale'
 	classpath = sourceSets.main.runtimeClasspath
 	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
+task GO_Replay (type:JavaExec) {
+    dependsOn 'classes'
+    main = 'GO.pages.REPLAY.PageReplay'
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
+task GO_Parametres (type:JavaExec) {
+    dependsOn 'classes'
+    main = 'GO.pages.parametres.PageParametres'
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
+task GO_Resultats (type:JavaExec) {
+    dependsOn 'classes'
+    main = 'GO.pages.resultats.PageResultats'
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
 }

@@ -36,3 +36,18 @@ task GO_Resultats (type:JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
 }
+
+task GO_Serveur (type:JavaExec) {
+   dependsOn 'classes'
+   main = 'GO.serveur.MonServeur'
+   classpath = sourceSets.main.runtimeClasspath
+   standardInput = System.in
+   jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
+task GO_PartieReseau (type:JavaExec) {
+      dependsOn 'classes'
+      main = 'GO.pages.partie.PagePartieReseau'
+      classpath = sourceSets.main.runtimeClasspath
+      jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}

@@ -11,12 +11,16 @@ public class Constantes {
 	public static final String CHEMIN_PARTIE_LOCALE_FXML = "/partie/locale/structure.xml";
 	public static final String CHEMIN_RESULTATS_FXML = "/resultats/structure.xml";
 	public static final String CHEMIN_REPLAY_FXML = "/replay/structure.xml";
+	public static final String CHEMIN_PARTIE_RESEAU_FXML = "/partie/reseau/structure.xml";
 	
 	public static final int TABLE_PETITE = 9;
 	public static final int TABLE_MOYENNE = 13;
 	public static final int TABLE_GRANDE = 19;
 	
 	public static final TailleTable TABLE_PAR_DEFAUT = TailleTable.PETITE;
+	
+	public static final int PORT = 8765;
+	public static final String ADRESSE_SERVEUR = String.format("ws://localhost:%s", PORT);
 	
 	public static final int TAILLE_CASE = 30;
 

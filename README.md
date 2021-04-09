@@ -12,3 +12,5 @@ Replay a besoin d'acceuil pour fonctionner
 | Replay | GO_Replay |    Philippe Monette + Charles Albert Choupin |
 | Parametres | GO_Parametres |    Mohammed Hafdi Idrissi |
 | Resultats | GO_Resultats |    Mohammed Dahinine |
+| Serveur | GO_Serveur |    Tous |
+| PartieReseau | GO_PartieReseau |    Philippe Monette + Charles Albert Choupin |

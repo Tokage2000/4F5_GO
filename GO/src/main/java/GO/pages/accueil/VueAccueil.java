@@ -27,6 +27,7 @@ import GO.commandes.ouvrir_resultats.OuvrirResultatsPourEnvoi;
 import GO.commandes.quitter.Quitter;
 import GO.commandes.quitter.QuitterPourEnvoi;
 import GO.pages.partie.vues.VuePartieLocale;
+import GO.pages.resultats.vues.VueResultats;
 
 import static GO.Constantes.*;
 import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
@@ -141,6 +142,8 @@ public class VueAccueil implements Vue, Initializable {
 		
 		return vuePartieLocale;
 	}
+
+
 
 	public void alerterErreurConnexion() {
 		J.appel(this);

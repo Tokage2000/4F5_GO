@@ -1,5 +1,5 @@
 
-package GO.pages.resultats;
+package GO.pages.resultats.modeles;
 
 import java.util.Arrays;
 

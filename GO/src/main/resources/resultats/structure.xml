@@ -8,9 +8,10 @@
 <?import javafx.scene.control.ComboBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" alignment="center"
+	styleClass="conteneurPrincipal"
     fx:controller="GO.pages.resultats.VueResultats">
 
-    <VBox>
+    <VBox fx id="conteneurTableResultats">
 
     	<HBox alignment="CENTER">
     		<Text textAlignment="CENTER" text="Verdict :"/>
@@ -22,7 +23,7 @@
     		<Text textAlignment="CENTER" text="Nombre de pions noir :"/>
     	</HBox>
     	<HBox alignment="CENTER">
-    		<Text textAlignment="CENTER" text = "Komi :"/>
+    		<Text textAlignment="CENTER" styleclass = "komi" text = "Komi :"/>
     	</HBox>
     	<HBox alignment="CENTER">
     		<Text textAlignment="CENTER" text = "Taille de la grille : "/>

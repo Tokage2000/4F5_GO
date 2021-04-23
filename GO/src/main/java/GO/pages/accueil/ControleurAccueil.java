@@ -46,10 +46,10 @@ import GO.pages.partie.afficheurs.AfficheurPartieLocale;
 import GO.pages.partie.controleurs.ControleurPartieLocale;
 import GO.pages.partie.modeles.PartieLocale;
 import GO.pages.partie.vues.VuePartieLocale;
-import GO.pages.resultats.ControleurResultats;
-import GO.pages.resultats.Resultats;
-import GO.pages.resultats.VueResultats;
 import GO.pages.resultats.afficheurs.AfficheurResultats;
+import GO.pages.resultats.controleurs.ControleurResultats;
+import GO.pages.resultats.modeles.Resultats;
+import GO.pages.resultats.vues.VueResultats;
 
 import static GO.Constantes.*;
 
@@ -195,7 +195,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		J.appel(this);
 
 		ChargeurDeVue<VueResultats> chargeur;
-		chargeur = new ChargeurDeVue<VueResultats>(CHEMIN_RESULTATS_FXML);
+		chargeur = new ChargeurDeVue<VueResultats>(CHEMIN_RESULTATS_FXML,CHEMIN_RESULTATS_CSS, CHEMIN_CHAINES);
 		
 		sceneResultats = chargeur.nouvelleScene(LARGEUR_PARAMETRES_PIXELS, 
 				                                 HAUTEUR_PARAMETRES_PIXELS);
@@ -367,7 +367,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		dialogueReplay.setMaxHeight(HAUTEUR_REPLAY_PIXELS_MAX);
 	}
 	
-	//Demander une meilleur facon de transferer les données
+	//Demander une meilleur facon de transferer les donnï¿½es
 	private void fermerReplay() {
 		J.appel(this);
 		
@@ -397,7 +397,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 			}
 		}
 	}
-	//Inutilisé pour l'instant
+	//Inutilisï¿½ pour l'instant
 	private void sauvegarderParametres() {
 		J.appel(this);
 

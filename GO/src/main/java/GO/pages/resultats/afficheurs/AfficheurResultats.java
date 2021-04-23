@@ -1,8 +1,8 @@
 
 package GO.pages.resultats.afficheurs;
 
-import GO.pages.resultats.ResultatsLectureSeule;
-import GO.pages.resultats.VueResultats;
+import GO.pages.resultats.modeles.ResultatsLectureSeule;
+import GO.pages.resultats.vues.VueResultats;
 import ntro.debogage.J;
 import ntro.mvc.Afficheur;
 

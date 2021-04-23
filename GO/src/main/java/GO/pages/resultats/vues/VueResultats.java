@@ -1,7 +1,5 @@
 
-package GO.pages.resultats;
-
-
+package GO.pages.resultats.vues;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -11,6 +9,7 @@ import java.util.ResourceBundle;
 import ntro.commandes.FabriqueCommande;
 import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
+import ntro.javafx.ChargeurDeVue;
 import ntro.mvc.Vue;
 import GO.commandes.fermer_resultats.FermerResultatsPourEnvoi;
 import GO.commandes.quitter.Quitter;
@@ -21,12 +20,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import static GO.Constantes.*;
 
 public class VueResultats implements Vue, Initializable {
 	private FermerResultatsPourEnvoi fermerResultats;
@@ -39,7 +41,7 @@ public class VueResultats implements Vue, Initializable {
 	// private ChoisirTailleGrillePourEnvoi choisirTailleGrille;
 
 	@FXML
-	private ComboBox<String> choixTaille;
+	private VBox conteneurResultats;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -86,5 +88,7 @@ public class VueResultats implements Vue, Initializable {
 	public void verifierCommandesPossibles() {
 		J.appel(this);
 	}
+
+	
 
 }

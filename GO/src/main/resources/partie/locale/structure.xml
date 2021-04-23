@@ -5,12 +5,11 @@
 <?import javafx.scene.text.Text?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" 
-	styleClass="conteneurPrincipal"
       fx:controller="GO.pages.partie.vues.VuePartieLocale">
     <VBox>
         <VBox fx:id="conteneurGrille"/>
     </VBox>
     <HBox>
-            <Text fx:id="nomJoueurUn" styleClass="nomJoueur" text="%partieLocale"/>
+            <Text fx:id="nomJoueurUn" text="Partie locale"/>
     </HBox>
 </VBox>

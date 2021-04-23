@@ -13,10 +13,6 @@ public class Constantes {
 	public static final String CHEMIN_REPLAY_FXML = "/replay/structure.xml";
 	public static final String CHEMIN_PARTIE_RESEAU_FXML = "/partie/reseau/structure.xml";
 	
-	public static final String CHEMIN_PARTIE_LOCALE_CSS = "/partie/locale/style.css";
-	public static final String CHEMIN_CHAINES = "traductions.chaines";
-
-	
 	public static final int TABLE_PETITE = 9;
 	public static final int TABLE_MOYENNE = 13;
 	public static final int TABLE_GRANDE = 19;

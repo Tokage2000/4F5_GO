@@ -130,7 +130,7 @@ public class VueAccueil implements Vue, Initializable {
 		J.appel(this);
 
 		ChargeurDeVue<VuePartieLocale> chargeur;
-		chargeur = new ChargeurDeVue<VuePartieLocale>(CHEMIN_PARTIE_LOCALE_FXML, CHEMIN_PARTIE_LOCALE_CSS, CHEMIN_CHAINES);
+		chargeur = new ChargeurDeVue<VuePartieLocale>(CHEMIN_PARTIE_LOCALE_FXML);
 
 		VuePartieLocale vuePartieLocale = chargeur.getVue();
 		

@@ -3,14 +3,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
+<?import GO.pages.partie.composants.ConteneurGrille?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" 
 	styleClass="conteneurPrincipal"
       fx:controller="GO.pages.partie.vues.VuePartieLocale">
-    <VBox>
-        <VBox fx:id="conteneurGrille"/>
+    <VBox styleClass="conteneurTableJeu">
+               <ConteneurGrille fx:id="conteneurGrille" styleClass="conteneurGrille" couleurNoir="#000000" couleurBlanc="#FFFFFF"/>
     </VBox>
+	<VBox styleClass="petitEspaceVertical"/>
     <HBox>
-            <Text fx:id="nomJoueurUn" styleClass="nomJoueur" text="%partieLocale"/>
+            <Text fx:id="nomJoueurUn" styleClass="conteneurNomJoueur" text="%partieLocale"/>
     </HBox>
 </VBox>

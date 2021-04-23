@@ -21,19 +21,19 @@ import GO.pages.partie.controleurs.ControleurPartieLocale;
 import GO.pages.partie.vues.VuePartieLocale;
 
 
-public class PagePartieLocale extends Application {
+public class PagePartieLocaleEn extends Application {
 
 	static {
 
 		Initialisateur.initialiser();
 		
-		J.appel(PagePartieLocale.class);
+		J.appel(PagePartieLocaleEn.class);
 	}
 
 	private Random alea = new Random();
 	
 	public static void main(String[] args) {
-		J.appel(PagePartieLocale.class);
+		J.appel(PagePartieLocaleEn.class);
 		launch(args);
 	}
 	
@@ -42,7 +42,7 @@ public class PagePartieLocale extends Application {
 		J.appel(this);
 		
 		ChargeurDeVue<VuePartieLocale> chargeur;
-		chargeur = new ChargeurDeVue<VuePartieLocale>(CHEMIN_PARTIE_LOCALE_FXML, CHEMIN_PARTIE_LOCALE_CSS, CHEMIN_CHAINES_FRANCAIS);
+		chargeur = new ChargeurDeVue<VuePartieLocale>(CHEMIN_PARTIE_LOCALE_FXML, CHEMIN_PARTIE_LOCALE_CSS, CHEMIN_CHAINES_ANGLAIS);
 
 		VuePartieLocale vue = chargeur.getVue();
 		

@@ -9,8 +9,9 @@ Replay a besoin d'acceuil pour fonctionner
 |----------|:-------------:|------:|
 | Accueil |  GO_Main | Tous |
 | PartieLocale |    GO_PartieLocale   |   Philippe Monette + Charles Albert Choupin |
+| PartieLocale |    GO_PartieLocaleEn   |   Philippe Monette + Charles Albert Choupin |
+| PartieReseau | GO_PartieReseau |    Philippe Monette + Charles Albert Choupin |
 | Replay | GO_Replay |    Philippe Monette + Charles Albert Choupin |
 | Parametres | GO_Parametres |    Mohammed Hafdi Idrissi |
 | Resultats | GO_Resultats |    Mohammed Dahinine |
 | Serveur | GO_Serveur |    Tous |
-| PartieReseau | GO_PartieReseau |    Philippe Monette + Charles Albert Choupin |

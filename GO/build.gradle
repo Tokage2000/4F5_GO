@@ -16,6 +16,13 @@ task GO_PartieLocale (type:JavaExec) {
 	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
 }
 
+task GO_PartieLocaleEn (type:JavaExec) {
+	dependsOn 'classes'
+	main = 'GO.pages.partie.PagePartieLocaleEn'
+	classpath = sourceSets.main.runtimeClasspath
+	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
 task GO_Replay (type:JavaExec) {
     dependsOn 'classes'
     main = 'GO.pages.REPLAY.PageReplay'

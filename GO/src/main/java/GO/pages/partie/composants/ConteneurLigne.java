@@ -1,44 +1,39 @@
-// Copyright (C) (2020) (Mathieu Bergeron) (mathieu.bergeron@cmontmorency.qc.ca)
-//
-// This file is part of tutoriels4f5
-//
-// tutoriels4f5 is free software: you can redistribute it and/or modify
-// it under the terms of the GNU Affero General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// tutoriels4f5 is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for more details.
-//
-// You should have received a copy of the GNU Affero General Public License
-// along with aquiletour.  If not, see <https://www.gnu.org/licenses/>
-
-
 package GO.pages.partie.composants;
 
 import ntro.debogage.J;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import GO.Constantes;
 import GO.enumerations.Couleur;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 public class ConteneurLigne extends HBox {
 	
-	public ConteneurLigne(int largeur, Color couleurRouge, Color couleurJaune) {
+	private int indiceY;
+	
+
+	public ConteneurLigne(int largeur, int indiceY, Color couleurNoir, Color couleurBlanc) {
 		J.appel(this);
+		
+		this.indiceY = indiceY;
 		
 		this.getStyleClass().add("conteneurLigne");
 
         this.setMinWidth(largeur*Constantes.TAILLE_CASE);
         this.setMaxWidth(largeur*Constantes.TAILLE_CASE);
 		
-		for(int i = 0; i < largeur; i++) {
-			
-			CaseAjustable caseAjustable = new CaseAjustable(couleurRouge, couleurJaune);
+        for(int indiceX = 0; indiceX < largeur; indiceX++) {
+        	
+			CaseAjustable caseAjustable = new CaseAjustable(couleurNoir, couleurBlanc, indiceX, indiceY);
 			
 			caseAjustable.getStyleClass().add("conteneurCase");
+			
 			
 			caseAjustable.setMinHeight(Constantes.TAILLE_CASE);
 			caseAjustable.setMinWidth(Constantes.TAILLE_CASE);
@@ -49,6 +44,7 @@ public class ConteneurLigne extends HBox {
 			this.getChildren().add(caseAjustable);
 		}
 	}
+	
 
 	public void afficherJeton(int indiceColonne, Couleur couleur) {
 		J.appel(this);
@@ -71,4 +67,35 @@ public class ConteneurLigne extends HBox {
 
 		return indiceColonne < this.getChildren().size();
 	}
+	
+    public void obtenirJouerIciPourEnvoi() {
+        J.appel(this);
+
+        for(CaseAjustable caseAjustable : caseAjustable()) {
+            
+        	caseAjustable.obtenirJouerIciPourEnvoi();
+        }
+    }
+    
+    public void installerCapteursJouerIci() {
+        J.appel(this);
+        
+        for(CaseAjustable caseAjustable : caseAjustable()) {
+            
+        	caseAjustable.installerCapteurJouerIci();
+        }
+    }
+    
+    private List<CaseAjustable> caseAjustable(){
+        J.appel(this);
+        
+        List<CaseAjustable> caseAjustable = new ArrayList<>();
+        
+        for(Node enfant : this.getChildren()) {
+            
+        	caseAjustable.add((CaseAjustable) enfant);
+        }
+
+        return caseAjustable;
+    }
 }

@@ -19,6 +19,9 @@ import GO.pages.parametres.ControleurParametres;
 import GO.pages.parametres.Parametres;
 import GO.pages.parametres.VueParametres;
 import GO.pages.resultats.afficheurs.AfficheurResultats;
+import GO.pages.resultats.controleurs.ControleurResultats;
+import GO.pages.resultats.modeles.Resultats;
+import GO.pages.resultats.vues.VueResultats;
 
 import static GO.Constantes.*;
 

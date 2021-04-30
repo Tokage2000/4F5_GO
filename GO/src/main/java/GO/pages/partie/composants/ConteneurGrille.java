@@ -37,14 +37,8 @@ public class ConteneurGrille extends VBox {
         
         this.getStyleClass().add("conteneurGrille");
         
-        int hauteurPixels = taille * Constantes.TAILLE_CASE;
-        int largeurPixels = taille * Constantes.TAILLE_CASE;
+        VBox.setVgrow(this, Priority.ALWAYS);
         
-        this.setMinHeight(hauteurPixels);
-        this.setMaxHeight(hauteurPixels);
-
-        this.setMinWidth(largeurPixels);
-        this.setMaxWidth(largeurPixels);
         
         for(int indiceY = 0; indiceY < taille; indiceY++) {
 

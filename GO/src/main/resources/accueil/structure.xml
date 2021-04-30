@@ -5,14 +5,14 @@
 <?import javafx.scene.text.*?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-    fx:controller="GO.pages.accueil.VueAccueil">
-    <BorderPane>
+    fx:controller="GO.pages.accueil.VueAccueil" styleClass="fenetrePrincipale">
+    <BorderPane VBox.vgrow="ALWAYS">
         <top>
             <MenuBar>
                 <menus>
                 <Menu text="Partie locale">
                     <items>
-                    <MenuItem fx:id="menuNouvellePartieLocale" text="Nouvelle partie"/>
+                    <MenuItem fx:id="menuNouvellePartieLocale" styleClass="menu_item" text="Nouvelle partie"/>
                     <SeparatorMenuItem/>
                     <MenuItem fx:id="menuParametres" text="Parametres"/>
 					<MenuItem fx:id="menuResultats" text="Resultats"/>
@@ -24,8 +24,8 @@
             </MenuBar>
         </top>
         <center>
-        <HBox>
-			<VBox fx:id="conteneurPartie"/>
+        <HBox alignment="center">
+			<VBox fx:id="conteneurPartie" alignment="center" HBox.hgrow="ALWAYS"/>
 		</HBox>
         </center>
     </BorderPane>

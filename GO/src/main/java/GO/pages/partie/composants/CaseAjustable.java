@@ -41,38 +41,81 @@ public class CaseAjustable extends CanvasAjustable {
         this.indiceX = indiceX;
         this.indiceY = indiceY;
         
-        this.bouton = new Button();
-        bouton.setMinWidth(Constantes.TAILLE_CASE);
-        bouton.setMaxWidth(Constantes.TAILLE_CASE);
-        bouton.setShape(new Circle(Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE));
-        bouton.setMinSize(2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE, 2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE);
-        bouton.setMaxSize(2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE, 2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE);
-        bouton.setTranslateX(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
-        bouton.setTranslateY(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
-        bouton.getStyleClass().add("buttontrans");
-		
-        //bouton.setOnMouseEntered(e -> test());
-        //bouton.setOnMouseExited(e -> test());
+        //this.bouton = new Button();
+        //bouton.setShape(new Circle(Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE));
+        //bouton.setMinSize(2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE, 2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE);
+        //bouton.setMaxSize(2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE, 2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE);
+        //bouton.setTranslateX(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
+        //bouton.setTranslateY(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
+        //bouton.getStyleClass().add("buttontrans");
+      //this.getChildren().add(bouton);
         
-    	this.getChildren().add(bouton);
+        this.setOnMouseEntered(e -> setRed());
+        this.setOnMouseExited(e -> setBlack());
+        this.setOnMousePressed(e -> setGray());
+        this.setOnMouseReleased(e -> setBlue());
+        this.setOnMouseClicked(e -> jouer());
+        
+    	
 		
     	
-        
-        HBox.setHgrow(this, Priority.ALWAYS);
-        VBox.setVgrow(this, Priority.ALWAYS);
         
         this.couleurNoir = couleurNoir;
         this.couleurBlanc = couleurBlanc;
 
         initialiserPinceau();
+        viderDessin();
+        dessinerCase();
+        
+    }
+    
+    private void setBlack() {
+        J.appel(this);
+        
+        pinceau.setStroke(Color.BLACK);
+        viderDessin();
         dessinerCase();
     }
     
-    public void test() {
+    private void setRed() {
         J.appel(this);
         
+        Color Oldcolor = (Color) pinceau.getFill();
+        if(Oldcolor == Color.LIGHTBLUE) {
+        pinceau.setStroke(Color.RED);
+        viderDessin();
+        dessinerCase();
+        }
         
+    }
+    
+    private void setGray() {
+        J.appel(this);
         
+        Color Oldcolor = (Color) pinceau.getFill();
+        if(Oldcolor == Color.LIGHTBLUE) {
+        pinceau.setFill(Color.GRAY);
+        pinceau.setStroke(Color.RED);
+        viderDessin();
+        dessinerCase();
+        }
+    }
+    
+    private void setBlue() {
+        J.appel(this);
+        
+        pinceau.setFill(Color.LIGHTBLUE);
+        pinceau.setStroke(Color.BLACK);
+        viderDessin();
+        dessinerCase();
+        
+    }
+    
+    public void jouer() {
+        J.appel(this);
+        
+        jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
+		jouerIciPourEnvoi.envoyerCommande();       
     }
 
     public void afficherJeton(Couleur couleur) {
@@ -82,14 +125,18 @@ public class CaseAjustable extends CanvasAjustable {
         
             case NOIR:
                 pinceau.setFill(couleurNoir);
+                pinceau.setStroke(Color.BLACK);
+                viderDessin();
                 dessinerCase();
-                rmvBoutton();
+                
             break;
 
             case BLANC:
                 pinceau.setFill(couleurBlanc);
+                pinceau.setStroke(Color.BLACK);
+                viderDessin();
                 dessinerCase();
-                rmvBoutton();
+                
             break;
         }
     }
@@ -169,8 +216,8 @@ public class CaseAjustable extends CanvasAjustable {
         
         Color Oldcolor = (Color) pinceau.getFill();
         pinceau.setFill(Color.BLACK);
-        pinceau.fillRect(laCase.caseHautGaucheX-Constantes.TAILLE_CASE, laCase.caseHautGaucheY + (laCase.tailleCase)/2, Constantes.TAILLE_CASE*2, 1);
-        pinceau.fillRect(laCase.caseHautGaucheX + (laCase.tailleCase)/2, laCase.caseHautGaucheY-Constantes.TAILLE_CASE, 1 , Constantes.TAILLE_CASE*2);
+        pinceau.fillRect(laCase.caseHautGaucheX-laCase.tailleCase*2, laCase.caseHautGaucheY + (laCase.tailleCase)/2, getWidth()*30, 1);
+        pinceau.fillRect(laCase.caseHautGaucheX + (laCase.tailleCase)/2, laCase.caseHautGaucheY-laCase.tailleCase*2, 1 , getHeight()*30);
         pinceau.setFill(Oldcolor); 
 
     }
@@ -223,6 +270,7 @@ public class CaseAjustable extends CanvasAjustable {
 	public void installerCapteurJouerIci() {
 		J.appel(this);
 		
+		/*
 		this.bouton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -233,18 +281,13 @@ public class CaseAjustable extends CanvasAjustable {
 				
 			}
 		});
+		*/
 	}
 	
 	public void obtenirJouerIciPourEnvoi() {
 		J.appel(this);
 		
 		jouerIciPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(JouerIci.class);
-	}
-	
-	public void rmvBoutton() {
-		J.appel(this);
-		
-		this.getChildren().remove(bouton);
 	}
 
 }

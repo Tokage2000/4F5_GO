@@ -11,6 +11,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class ConteneurLigne extends HBox {
@@ -25,8 +27,7 @@ public class ConteneurLigne extends HBox {
 		
 		this.getStyleClass().add("conteneurLigne");
 
-        this.setMinWidth(largeur*Constantes.TAILLE_CASE);
-        this.setMaxWidth(largeur*Constantes.TAILLE_CASE);
+		VBox.setVgrow(this, Priority.ALWAYS);
 		
         for(int indiceX = 0; indiceX < largeur; indiceX++) {
         	
@@ -35,11 +36,7 @@ public class ConteneurLigne extends HBox {
 			caseAjustable.getStyleClass().add("conteneurCase");
 			
 			
-			caseAjustable.setMinHeight(Constantes.TAILLE_CASE);
-			caseAjustable.setMinWidth(Constantes.TAILLE_CASE);
-
-			caseAjustable.setMaxHeight(Constantes.TAILLE_CASE);
-			caseAjustable.setMaxWidth(Constantes.TAILLE_CASE);
+			HBox.setHgrow(caseAjustable, Priority.ALWAYS);
 			
 			this.getChildren().add(caseAjustable);
 		}
@@ -82,6 +79,7 @@ public class ConteneurLigne extends HBox {
         
         for(CaseAjustable caseAjustable : caseAjustable()) {
             
+        	
         	caseAjustable.installerCapteurJouerIci();
         }
     }

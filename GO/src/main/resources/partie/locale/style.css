@@ -91,8 +91,6 @@
 
 .conteneurGrille {
   -fx-alignment: center;
-  -fx-min-width: 6em;
-  -fx-max-width: 60em;
   -fx-background-color: lightblue;
   -fx-background-radius: 20px 20px 20px 20px;
   -fx-border-radius: 20px 20px 20px 20px;

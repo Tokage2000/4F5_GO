@@ -31,7 +31,6 @@ public abstract class VuePartie implements Vue, Initializable {
     
     private Button[][] cases;
     
-	private JouerIciPourEnvoi jouerIciPourEnvoi;
 
 
 	@Override

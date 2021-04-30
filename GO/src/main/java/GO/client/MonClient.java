@@ -64,7 +64,7 @@ public class MonClient extends Application {
 		J.appel(this);
 
 		ChargeurDeVue<VueAccueil> chargeur;
-		chargeur = new ChargeurDeVue<VueAccueil>(CHEMIN_PRINCIPAL_FXML);
+		chargeur = new ChargeurDeVue<VueAccueil>(CHEMIN_PRINCIPAL_FXML, CHEMIN_PARTIE_LOCALE_CSS, CHEMIN_CHAINES_FRANCAIS);
 
 		VueAccueil vue = chargeur.getVue();
 		

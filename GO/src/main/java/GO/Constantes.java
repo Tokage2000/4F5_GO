@@ -33,11 +33,11 @@ public class Constantes {
 	
 	public static final int TAILLE_CASE = 30;
 
-	public static final int LARGEUR_PIXELS_MIN = 400;
-	public static final int HAUTEUR_PIXELS_MIN = 400;
+	public static final int LARGEUR_PIXELS_MIN = 500;
+	public static final int HAUTEUR_PIXELS_MIN = 500;
 
-	public static final int LARGEUR_PIXELS = 586;
-	public static final int HAUTEUR_PIXELS= 560;
+	public static final int LARGEUR_PIXELS = 600;
+	public static final int HAUTEUR_PIXELS= 600;
 	
 	
 	public static final int LARGEUR_PARAMETRES_PIXELS_MIN = 250;

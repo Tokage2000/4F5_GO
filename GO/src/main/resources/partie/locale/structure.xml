@@ -7,12 +7,13 @@
 
 <VBox xmlns:fx="http://javafx.com/fxml" 
 	styleClass="conteneurPrincipal"
-      fx:controller="GO.pages.partie.vues.VuePartieLocale">
-    <VBox styleClass="conteneurTableJeu">
-               <ConteneurGrille fx:id="conteneurGrille" styleClass="conteneurGrille" couleurNoir="#000000" couleurBlanc="#FFFFFF"/>
+      fx:controller="GO.pages.partie.vues.VuePartieLocale"
+      VBox.vgrow="ALWAYS">
+       <VBox styleClass="conteneurTableJeu" VBox.vgrow="ALWAYS">
+               <ConteneurGrille fx:id="conteneurGrille" styleClass="conteneurGrille" couleurNoir="#000000" couleurBlanc="#FFFFFF" VBox.vgrow="ALWAYS"/>
     </VBox>
 	<VBox styleClass="petitEspaceVertical"/>
-    <HBox>
+    <HBox styleClass="conteneurNomsJoueurs" VBox.vgrow="SOMETIMES">
             <Text fx:id="nomJoueurUn" styleClass="conteneurNomJoueur" text="%partieLocale"/>
     </HBox>
 </VBox>

@@ -9,6 +9,13 @@ task GO_Main (type:JavaExec) {
 	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
 }
 
+task GO_MainEn (type:JavaExec) {
+	dependsOn 'classes'
+	main = 'GO.client.MonClientEn'
+	classpath = sourceSets.main.runtimeClasspath
+	jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
 task GO_PartieLocale (type:JavaExec) {
 	dependsOn 'classes'
 	main = 'GO.pages.partie.PagePartieLocale'

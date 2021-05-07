@@ -8,6 +8,7 @@ Replay a besoin d'acceuil pour fonctionner
 | Page   |      Commande Gradle      |  Personne(s) Responsable |
 |----------|:-------------:|------:|
 | Accueil |  GO_Main | Tous |
+| Accueil Anglais |  GO_MainEn | Tous |
 | PartieLocale |    GO_PartieLocale   |   Philippe Monette + Charles Albert Choupin |
 | PartieLocale |    GO_PartieLocaleEn   |   Philippe Monette + Charles Albert Choupin |
 | PartieReseau | GO_PartieReseau |    Philippe Monette + Charles Albert Choupin |

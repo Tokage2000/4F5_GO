@@ -10,16 +10,16 @@
         <top>
             <MenuBar>
                 <menus>
-                <Menu text="Partie locale">
+                <Menu text="Go">
                     <items>
-                    <MenuItem fx:id="menuNouvellePartieLocale" styleClass="menu_item" text="Nouvelle partie"/>
+                    <MenuItem fx:id="menuNouvellePartieLocale" styleClass="menu_item" text="%nouvellePartieLocale"/>
                     <SeparatorMenuItem/>
-					<MenuItem fx:id="menuNouvellePartieReseau" styleClass="menu_item" text="Nouvelle partie reseau"/>
+					<MenuItem fx:id="menuNouvellePartieReseau" styleClass="menu_item" text="%nouvellePartieReseau"/>
                     <SeparatorMenuItem/>
-                    <MenuItem fx:id="menuParametres" text="Parametres"/>
-					<MenuItem fx:id="menuResultats" text="Resultats"/>
-					<MenuItem fx:id="menuReplay" text="Replay"/>
-                    <MenuItem fx:id="menuQuitter" text="Quitter"/>
+                    <MenuItem fx:id="menuParametres" text="%parametres"/>
+					<MenuItem fx:id="menuResultats" text="%resultats"/>
+					<MenuItem fx:id="menuReplay" text="%replay"/>
+                    <MenuItem fx:id="menuQuitter" text="%quitter"/>
                     </items>
                 </Menu>
             </menus>

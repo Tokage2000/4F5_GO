@@ -4,6 +4,8 @@ import GO.Constantes;
 import GO.enumerations.Couleur;
 import ntro.debogage.J;
 import ntro.mvc.modeles.Modele;
+import GO.pages.partie.modeles.Jeton;
+import GO.pages.partie.modeles.JetonLectureSeule;
 
 public class      Partie<PLS extends PartieLectureSeule> 
        extends    Modele<PLS>
@@ -14,6 +16,9 @@ public class      Partie<PLS extends PartieLectureSeule>
 	protected Couleur couleurCourante;
 
 	protected Table table;
+	
+	private transient Jeton dernierJetonAjoute;
+
 	
 	@Override
 	public void apresCreation() {
@@ -50,7 +55,7 @@ public class      Partie<PLS extends PartieLectureSeule>
         J.appel(this);
         
         if(siPossibleJouerIci(X,Y)) {
-        table.ajouterJeton(X, Y , couleurCourante);
+        	dernierJetonAjoute = table.ajouterJeton(X, Y , couleurCourante);
         prochaineCouleur();
         }
     }
@@ -116,6 +121,13 @@ public class      Partie<PLS extends PartieLectureSeule>
 		
 		
 		return siPossible;
+	}
+	
+	@Override
+	public JetonLectureSeule getDernierJetonAjoute() {
+		J.appel(this);
+
+		return dernierJetonAjoute;
 	}
 	
 	

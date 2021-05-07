@@ -72,5 +72,11 @@ public abstract class VuePartie implements Vue, Initializable {
 
 		conteneurGrille.afficherJeton(indiceX, indiceY, couleur);
 	}
+	
+	public void animerEntreeJeton(int indiceColonne, int indiceRangee) {
+		J.appel(this);
+		
+		conteneurGrille.animerEntreeJeton(indiceColonne, indiceRangee);
+	}
 
 }

@@ -1,6 +1,7 @@
 package GO.pages.partie.composants;
 
 import ntro.debogage.J;
+import GO.pages.partie.composants.CaseAjustable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,5 +96,15 @@ public class ConteneurLigne extends HBox {
         }
 
         return caseAjustable;
+    }
+    
+    public void animerEntreeJeton(int indiceColonne) {
+        J.appel(this);
+
+        if(siIndiceColonneValide(indiceColonne)) {
+
+            CaseAjustable caseAjustable = getCase(indiceColonne);
+            caseAjustable.animerEntreeJeton();
+        }
     }
 }

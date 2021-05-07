@@ -16,6 +16,9 @@ import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
 import ntro.javafx.ChargeurDeVue;
 import ntro.mvc.Vue;
+import GO.commandes.nouvelle_partie_reseau.NouvellePartieReseau;
+import GO.commandes.nouvelle_partie_reseau.NouvellePartieReseauPourEnvoi;
+import GO.pages.partie.vues.VuePartieReseau;
 import GO.commandes.nouvelle_partie.NouvellePartieLocale;
 import GO.commandes.nouvelle_partie.NouvellePartieLocalePourEnvoi;
 import GO.commandes.ouvrir_parametres.OuvrirParametres;
@@ -31,6 +34,9 @@ import GO.pages.resultats.vues.VueResultats;
 
 import static GO.Constantes.*;
 import static GO.Constantes.CHEMIN_PARTIE_LOCALE_FXML;
+import static GO.Constantes.CHEMIN_CHAINES;
+import static GO.Constantes.CHEMIN_PARTIE_RESEAU_CSS;
+import static GO.Constantes.CHEMIN_PARTIE_RESEAU_FXML;
 
 public class VueAccueil implements Vue, Initializable {
 	
@@ -41,6 +47,7 @@ public class VueAccueil implements Vue, Initializable {
 	private VBox conteneurPartie;
 	
 	private NouvellePartieLocalePourEnvoi nouvellePartieLocalePourEnvoi;
+	private NouvellePartieReseauPourEnvoi nouvellePartieReseauPourEnvoi;
 	private OuvrirParametresPourEnvoi ouvrirParametresPourEnvoi;
 	private OuvrirResultatsPourEnvoi ouvrirResultatsPourEnvoi;
 	private OuvrirReplayPourEnvoi ouvrirReplayPourEnvoi;
@@ -53,6 +60,7 @@ public class VueAccueil implements Vue, Initializable {
 		J.appel(this);
 		
 		DoitEtre.nonNul(menuNouvellePartieLocale);
+		DoitEtre.nonNul(menuNouvellePartieReseau);
 		DoitEtre.nonNul(menuParametres);
 		DoitEtre.nonNul(menuResultats);
 		DoitEtre.nonNul(menuReplay);
@@ -66,6 +74,7 @@ public class VueAccueil implements Vue, Initializable {
 		J.appel(this);
 		
 		nouvellePartieLocalePourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(NouvellePartieLocale.class);
+		nouvellePartieReseauPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(NouvellePartieReseau.class);
 		ouvrirParametresPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(OuvrirParametres.class);
 		ouvrirResultatsPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(OuvrirResultats.class);
 		ouvrirReplayPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(OuvrirReplay.class);
@@ -82,6 +91,15 @@ public class VueAccueil implements Vue, Initializable {
 				J.appel(this);
 				
 				nouvellePartieLocalePourEnvoi.envoyerCommande();
+			}
+		});
+		
+		menuNouvellePartieReseau.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				J.appel(this);
+				
+				nouvellePartieReseauPourEnvoi.envoyerCommande();
 			}
 		});
 
@@ -141,6 +159,24 @@ public class VueAccueil implements Vue, Initializable {
 		conteneurPartie.getChildren().add(parent);
 		
 		return vuePartieLocale;
+	}
+	
+	public VuePartieReseau creerVuePartieReseau() {
+		J.appel(this);
+
+		ChargeurDeVue<VuePartieReseau> chargeur;
+		chargeur = new ChargeurDeVue<VuePartieReseau>(CHEMIN_PARTIE_RESEAU_FXML,
+				                              		  CHEMIN_PARTIE_RESEAU_CSS,
+				                              		CHEMIN_CHAINES_FRANCAIS);
+		
+		VuePartieReseau vuePartieReseau = chargeur.getVue();
+		
+		Parent parent = chargeur.getParent();
+		
+		conteneurPartie.getChildren().clear();
+		conteneurPartie.getChildren().add(parent);
+		
+		return vuePartieReseau;
 	}
 
 

@@ -7,6 +7,9 @@ import GO.commandes.jouer_ici.JouerIci;
 import GO.Constantes;
 import GO.commandes.jouer_ici.JouerIciPourEnvoi;
 import GO.enumerations.Couleur;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.beans.NamedArg;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 public class CaseAjustable extends CanvasAjustable {
     
@@ -29,6 +33,10 @@ public class CaseAjustable extends CanvasAjustable {
     private int indiceX;
     private int indiceY;
     
+    private boolean actif = true;
+    
+    private Timeline animationEntreeJeton;
+    
     private Button bouton;
     private JouerIciPourEnvoi jouerIciPourEnvoi;
 
@@ -37,6 +45,8 @@ public class CaseAjustable extends CanvasAjustable {
     		             int indiceX, int indiceY) {
         super();
         J.appel(this);
+        
+
         
         this.indiceX = indiceX;
         this.indiceY = indiceY;
@@ -55,13 +65,13 @@ public class CaseAjustable extends CanvasAjustable {
         this.setOnMousePressed(e -> setGray());
         this.setOnMouseReleased(e -> setBlue());
         this.setOnMouseClicked(e -> jouer());
-        
     	
 		
-    	
         
         this.couleurNoir = couleurNoir;
         this.couleurBlanc = couleurBlanc;
+        
+        creerAnimationEntreeJeton();
 
         initialiserPinceau();
         viderDessin();
@@ -103,19 +113,23 @@ public class CaseAjustable extends CanvasAjustable {
     
     private void setBlue() {
         J.appel(this);
-        
+        Color Oldcolor = (Color) pinceau.getFill();
+        if(Oldcolor == Color.GRAY) {
         pinceau.setFill(Color.LIGHTBLUE);
         pinceau.setStroke(Color.BLACK);
         viderDessin();
         dessinerCase();
-        
+        }
     }
     
     public void jouer() {
         J.appel(this);
         
+        if(actif) {
         jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
-		jouerIciPourEnvoi.envoyerCommande();       
+		jouerIciPourEnvoi.envoyerCommande();    
+		actif = false;
+        }
     }
 
     public void afficherJeton(Couleur couleur) {
@@ -204,7 +218,7 @@ public class CaseAjustable extends CanvasAjustable {
         
         Case laCase = calculerCase(taillePourcentage);
         
-        dessinerLigne(laCase);
+        //dessinerLigne(laCase);
         dessinerFond(laCase);
         dessinerContour(laCase);
         
@@ -282,6 +296,8 @@ public class CaseAjustable extends CanvasAjustable {
 			}
 		});
 		*/
+		
+	
 	}
 	
 	public void obtenirJouerIciPourEnvoi() {
@@ -289,5 +305,30 @@ public class CaseAjustable extends CanvasAjustable {
 		
 		jouerIciPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(JouerIci.class);
 	}
+	
+    public void animerEntreeJeton() {
+        J.appel(this);
+        
+        animationEntreeJeton.playFromStart();
+    }
+
+	
+    private void creerAnimationEntreeJeton() {
+        J.appel(this);
+        
+        animationEntreeJeton = new Timeline();
+
+        animationEntreeJeton.getKeyFrames().add(
+                new KeyFrame(Duration.ZERO,
+                             new KeyValue(this.translateYProperty(), -100),
+                             new KeyValue(this.opacityProperty(), 0)));
+
+        animationEntreeJeton.getKeyFrames().add(
+                new KeyFrame(new Duration(100),
+                             new KeyValue(this.translateYProperty(), 0),
+                             new KeyValue(this.opacityProperty(), 1))); 
+    }
+
+	
 
 }

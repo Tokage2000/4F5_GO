@@ -14,6 +14,8 @@
                     <items>
                     <MenuItem fx:id="menuNouvellePartieLocale" styleClass="menu_item" text="Nouvelle partie"/>
                     <SeparatorMenuItem/>
+					<MenuItem fx:id="menuNouvellePartieReseau" styleClass="menu_item" text="Nouvelle partie reseau"/>
+                    <SeparatorMenuItem/>
                     <MenuItem fx:id="menuParametres" text="Parametres"/>
 					<MenuItem fx:id="menuResultats" text="Resultats"/>
 					<MenuItem fx:id="menuReplay" text="Replay"/>

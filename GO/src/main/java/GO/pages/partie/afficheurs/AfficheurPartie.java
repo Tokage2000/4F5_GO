@@ -36,6 +36,17 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
 		int tailleGrille = partieLectureSeule.getTaille();
 		
 		rafraichirTable(tailleGrille, grille, vue);
+		animerDernierJeton(partieLectureSeule, vue, tailleGrille);
+	}
+
+	private void animerDernierJeton(PLS partieLectureSeule, V vue, int hauteurGrille) {
+		J.appel(this);
+
+		JetonLectureSeule dernierJeton = partieLectureSeule.getDernierJetonAjoute();
+        
+        if(dernierJeton != null) {
+            vue.animerEntreeJeton(dernierJeton.getIndiceX(), dernierJeton.getIndiceY());
+        }
 	}
 
 	private void rafraichirTable(int tailleGrille, TableLectureSeule table, V vue) {

@@ -4,9 +4,20 @@ package GO.pages.accueil;
 import ntro.debogage.Erreur;
 import ntro.debogage.J;
 import ntro.systeme.Systeme;
+import GO.client.MonClient;
+import GO.commandes.nouvelle_partie_reseau.NouvellePartieReseau;
+import GO.messages.nouvelle_partie_reseau.MsgNouvellePartie;
+import GO.messages.nouvelle_partie_reseau.MsgNouvellePartieRecu;
+import GO.commandes.nouvelle_partie_reseau.NouvellePartieReseauRecue;
+import GO.messages.nouvelle_partie_reseau.MsgNouvellePartiePourEnvoi;
+import GO.pages.partie.afficheurs.AfficheurPartieReseau;
+import GO.pages.partie.controleurs.ControleurPartieReseau;
+import GO.pages.partie.modeles.PartieReseau;
+import GO.pages.partie.vues.VuePartieReseau;
 import ntro.javafx.ChargeurDeVue;
 import ntro.javafx.DialogueModal;
 import ntro.messages.FabriqueMessage;
+import ntro.messages.RecepteurMessage;
 import ntro.mvc.controleurs.ControleurVue;
 import ntro.mvc.controleurs.FabriqueControleur;
 import ntro.mvc.controleurs.RecepteurCommandeMVC;
@@ -52,6 +63,7 @@ import GO.pages.resultats.modeles.Resultats;
 import GO.pages.resultats.vues.VueResultats;
 
 import static GO.Constantes.*;
+import static GO.Constantes.ID_MODELE_PAR_DEFAUT;
 
 import java.awt.List;
 import java.io.IOException;
@@ -70,7 +82,11 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 	private Stage dialogueReplay;	
 	private Replay replay;
 	
+	private MsgNouvellePartiePourEnvoi messageNouvellePartieReseau;
+
+	
 	private PartieLocale partieLocale;
+	private PartieReseau partieReseau;
 
 	@Override
 	protected void installerReceptionCommandes() {
@@ -84,7 +100,15 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 				nouvellePartieLocale();
 			}
 		});
-
+		
+		installerRecepteurCommande(NouvellePartieReseau.class, new RecepteurCommandeMVC<NouvellePartieReseauRecue>() {
+			@Override
+			public void executerCommandeMVC(NouvellePartieReseauRecue commande) {
+				J.appel(this);
+				
+				initierNouvellePartieReseau();
+			}
+		});
 		installerRecepteurCommande(OuvrirParametres.class, new RecepteurCommandeMVC<OuvrirParametresRecue>() {
 			@Override
 			public void executerCommandeMVC(OuvrirParametresRecue commande) {
@@ -152,11 +176,24 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 	@Override
 	protected void obtenirMessagesPourEnvoi() {
 		J.appel(this);
+		
+		messageNouvellePartieReseau = FabriqueMessage.obtenirMessagePourEnvoi(MsgNouvellePartie.class);
+
 	}
 
 	@Override
 	protected void installerReceptionMessages() {
 		J.appel(this);
+		
+		FabriqueMessage.installerRecepteur(MsgNouvellePartie.class, new RecepteurMessage<MsgNouvellePartieRecu>() {
+
+			@Override
+			public void recevoirMessage(MsgNouvellePartieRecu messageRecu) {
+				J.appel(this);
+				
+				creerNouvellePartieReseau(messageRecu.getParametres());
+			}
+		});
 	}
 
 	@Override
@@ -301,6 +338,46 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		partieLocale.setTaille(parametres.getTailleTable().getTaille());
 		partieLocale.setCouleurCourante(parametres.getQuiEsTu());
 	}
+	
+	private void initierNouvellePartieReseau() {
+		J.appel(this);
+		
+		if(MonClient.siConnecteAuServeur()) {
+			
+			messageNouvellePartieReseau.setParametres(parametres);
+			messageNouvellePartieReseau.envoyerMessage();
+
+			creerNouvellePartieReseau(parametres);
+			
+		}else {
+			
+			getVue().alerterErreurConnexion();
+		}
+	}
+
+	private void creerNouvellePartieReseau(Parametres parametres) {
+		J.appel(this);
+
+		VuePartieReseau vuePartieReseau = getVue().creerVuePartieReseau();
+		
+		PartieReseau partie = creerPartieReseauSelonParametres(parametres);
+		
+		AfficheurPartieReseau afficheur = new AfficheurPartieReseau();
+		
+		FabriqueControleur.creerControleur(ControleurPartieReseau.class, partie, vuePartieReseau, afficheur);
+	}
+
+
+	private PartieReseau creerPartieReseauSelonParametres(Parametres parametres) {
+		J.appel(this);
+
+		PartieReseau partie = EntrepotDeModeles.creerModele(PartieReseau.class, ID_MODELE_PAR_DEFAUT);
+		
+		partie.setCouleurCourante(parametres.getQuiEsTu());
+		partie.setTaille(parametres.getTailleTable().getTaille());
+		return partie;
+	}
+	
 	private void ouvrirParametres() {
 		J.appel(this);
 		
@@ -397,7 +474,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 			}
 		}
 	}
-	//Inutilis� pour l'instant
+	//Inutilise pour l'instant
 	private void sauvegarderParametres() {
 		J.appel(this);
 

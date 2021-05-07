@@ -1,6 +1,7 @@
 package GO.pages.partie.composants;
 
 import ntro.debogage.J;
+import GO.pages.partie.composants.ConteneurLigne;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,4 +105,14 @@ public class ConteneurGrille extends VBox {
 
         return conteneurLigne;
     }
+    public void animerEntreeJeton(int indiceColonne, int indiceRangee) {
+        J.appel(this);
+
+        if(siIndicesValides(indiceColonne, indiceRangee)) {
+            
+            ConteneurLigne ligne = getConteneurLigne(indiceRangee);
+            ligne.animerEntreeJeton(indiceColonne);
+        }
+    }
+    
 }

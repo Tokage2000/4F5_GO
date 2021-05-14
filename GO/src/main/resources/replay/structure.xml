@@ -3,12 +3,15 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Text?>
+<?import GO.pages.replay.composants.ConteneurGrilleRP?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" 
-fx:controller="GO.pages.REPLAY.vues.VueReplay">
+	styleClass="conteneurPrincipal"
+      fx:controller="GO.pages.replay.vues.VueReplay"
+      VBox.vgrow="ALWAYS">
 
-    <VBox>
-        <VBox fx:id="conteneurGrille" />
+       <VBox styleClass="conteneurTableJeu" VBox.vgrow="ALWAYS">
+               <ConteneurGrilleRP fx:id="conteneurGrilleRP" styleClass="conteneurGrille" couleurNoir="#000000" couleurBlanc="#FFFFFF" VBox.vgrow="ALWAYS"/>
     </VBox>
     <VBox>
     <HBox alignment="center">

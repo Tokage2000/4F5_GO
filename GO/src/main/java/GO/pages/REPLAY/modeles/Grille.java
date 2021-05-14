@@ -1,4 +1,4 @@
-package GO.pages.REPLAY.modeles;
+package GO.pages.replay.modeles;
 
 import java.util.ArrayList;
 
@@ -6,8 +6,8 @@ import java.util.List;
 
 import ntro.debogage.J;
 import GO.enumerations.Couleur;
-import GO.pages.REPLAY.modeles.Jeton;
-import GO.pages.REPLAY.modeles.JetonLectureSeule;
+import GO.pages.replay.modeles.Jeton;
+import GO.pages.replay.modeles.JetonLectureSeule;
 
 public class Grille implements GrilleLectureSeule {
 
@@ -55,10 +55,15 @@ public class Grille implements GrilleLectureSeule {
 			max--;
 		}
 	}
+	
+	public int getMax() {
+		return max;
+	}
 
 	@Override
 	public List<JetonLectureSeule> getJetons() {
 		J.appel(this);
+		
 		List<JetonLectureSeule> jetonsLectureSeule = new ArrayList<>();
 		
 		nbJetons = jetons.size();
@@ -68,18 +73,11 @@ public class Grille implements GrilleLectureSeule {
 			update = false;
 		}
 		
-		int i=0;
-		for (Jeton jeton : jetons) {
+		for(Jeton jeton : jetons) {
 
-			if(i>=max) {
-				break;
-			}
-			
 			jetonsLectureSeule.add((JetonLectureSeule) jeton);
-
-			i++;
 		}
-
+		
 		return jetonsLectureSeule;
 	}
 

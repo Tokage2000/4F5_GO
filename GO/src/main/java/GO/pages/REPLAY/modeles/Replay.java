@@ -1,8 +1,8 @@
-package GO.pages.REPLAY.modeles;
+package GO.pages.replay.modeles;
 
 import ntro.debogage.J;
 import ntro.mvc.modeles.Modele;
-import GO.pages.REPLAY.modeles.Grille;
+import GO.pages.replay.modeles.Grille;
 
 import java.util.List;
 

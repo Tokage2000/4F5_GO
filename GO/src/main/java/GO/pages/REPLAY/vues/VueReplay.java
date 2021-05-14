@@ -1,4 +1,4 @@
-package GO.pages.REPLAY.vues;
+package GO.pages.replay.vues;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,11 +25,12 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import GO.pages.replay.composants.ConteneurGrilleRP;
 
 public class VueReplay implements Vue, Initializable {
 
 	@FXML
-	private VBox conteneurGrille;
+	private ConteneurGrilleRP conteneurGrilleRP;
 
 	@FXML
 	private Button suivant, quitter, precedant;
@@ -44,48 +45,16 @@ public class VueReplay implements Vue, Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		J.appel(this);
 
-		DoitEtre.nonNul(conteneurGrille);
+		DoitEtre.nonNul(conteneurGrilleRP);
 		DoitEtre.nonNul(suivant);
+		DoitEtre.nonNul(precedant);
 		DoitEtre.nonNul(quitter);
 	}
 
 	public void creerGrille(int cote) {
 		J.appel(this);
 
-		creerColonnes(cote);
-	}
-
-	private void creerColonnes(int cote) {
-		J.appel(this);
-
-		cases = new Button[cote][cote];
-
-		for (int indiceRangee = 0; indiceRangee < cote; indiceRangee++) {
-			HBox ligne = creerLigne(indiceRangee, cote);
-
-			conteneurGrille.getChildren().add(ligne);
-		}
-	}
-
-	private HBox creerLigne(int indiceRangee, int largeur) {
-		J.appel(this);
-
-		HBox ligne = new HBox();
-
-		for (int indiceColonne = 0; indiceColonne < largeur; indiceColonne++) {
-
-			Button _case = new Button();
-
-			_case.setMinWidth(Constantes.TAILLE_CASE);
-			_case.setMaxWidth(Constantes.TAILLE_CASE);
-
-			cases[indiceColonne][indiceRangee] = _case;
-			
-			
-			ligne.getChildren().add(_case);
-		}
-
-		return ligne;
+		conteneurGrilleRP.creerGrille(cote);
 	}
 
 	@Override
@@ -132,53 +101,21 @@ public class VueReplay implements Vue, Initializable {
 
 			}
 		});
+		
 
 	}
 
-	private boolean siIndicesValides(int indiceColonne, int indiceRangee) {
-		J.appel(this);
-
-		boolean siValide = false;
-		
-		if(indiceColonne >= 0 && indiceColonne < cases.length) {
-			siValide = indiceRangee >= 0 && indiceRangee < cases[indiceColonne].length;
-		}
-		
-		return siValide;
-	}
-	//TODO trouver une façon de faire en sorte que les cases ne soit pas laides.
-	public void afficherJeton(int indiceRangee, int indiceColonne, Couleur couleur) {
-		J.appel(this);
-		
-		if(siIndicesValides(indiceRangee, indiceColonne)) {
-
-			Button _case = cases[indiceRangee][indiceColonne];
-			switch(couleur) {
-				case BLANC:
-					_case.setStyle("-fx-background-color: white");
-					break;
-
-				case NOIR:
-					_case.setStyle("-fx-background-color: black");
-					break;
-			}
-		}
-	}
 
 	@Override
 	public void verifierCommandesPossibles() {
-		
+		J.appel(this);
 	}
 
-	public void clearTable() {
-		
-		for(int x = 0; x < cases.length; x++) {
-			for(int y = 0; y < cases[x].length; y++) {
-				
-				Button _case = cases[x][y];
-				_case.setStyle("-fx-border-color: white; -fx-border-width: .17;");
-			}
-		}
-		
+	public void afficherJeton(int indiceX, int indiceY, Couleur couleur, Boolean invisible) {
+		J.appel(this);
+
+		conteneurGrilleRP.afficherJeton(indiceX, indiceY, couleur, invisible);
 	}
+
+	
 }

@@ -1,4 +1,4 @@
-package GO.pages.REPLAY;
+package GO.pages.replay;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -9,15 +9,15 @@ import ntro.javafx.ChargeurDeVue;
 import ntro.javafx.Initialisateur;
 import ntro.mvc.controleurs.FabriqueControleur;
 import ntro.mvc.modeles.EntrepotDeModeles;
-import GO.pages.REPLAY.controleurs.ControleurReplay;
+import GO.pages.replay.controleurs.ControleurReplay;
 
 import static GO.Constantes.*;
 
 import java.util.Random;
 
-import GO.pages.REPLAY.afficheurs.AfficheurReplay;
-import GO.pages.REPLAY.modeles.Replay;
-import GO.pages.REPLAY.vues.VueReplay;
+import GO.pages.replay.afficheurs.AfficheurReplay;
+import GO.pages.replay.modeles.Replay;
+import GO.pages.replay.vues.VueReplay;
 
 public class PageReplay extends Application {
 
@@ -41,7 +41,7 @@ public class PageReplay extends Application {
 
 		ChargeurDeVue<VueReplay> chargeur;
 
-		chargeur = new ChargeurDeVue<VueReplay>(CHEMIN_REPLAY_FXML);
+		chargeur = new ChargeurDeVue<VueReplay>(CHEMIN_REPLAY_FXML, CHEMIN_REPLAY_CSS, CHEMIN_CHAINES_FRANCAIS);
 
 		VueReplay vue = chargeur.getVue();
 

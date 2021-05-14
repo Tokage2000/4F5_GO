@@ -1,4 +1,4 @@
-package GO.pages.partie.composants;
+package GO.pages.replay.composants;
 
 import ntro.commandes.FabriqueCommande;
 import ntro.debogage.J;
@@ -23,7 +23,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-public class CaseAjustable extends CanvasAjustable {
+public class CaseAjustableRP extends CanvasAjustable {
     
     private final double TAILLE_POURCENTAGE = 0.75;
     
@@ -40,7 +40,7 @@ public class CaseAjustable extends CanvasAjustable {
     private Button bouton;
     private JouerIciPourEnvoi jouerIciPourEnvoi;
 
-    public CaseAjustable(@NamedArg("couleurNoir") Color couleurNoir, 
+    public CaseAjustableRP(@NamedArg("couleurNoir") Color couleurNoir, 
     		             @NamedArg("couleurBlanc") Color couleurBlanc,
     		             int indiceX, int indiceY) {
         super();
@@ -60,13 +60,6 @@ public class CaseAjustable extends CanvasAjustable {
         //bouton.getStyleClass().add("buttontrans");
       //this.getChildren().add(bouton);
         
-        this.setOnMouseEntered(e -> setRed());
-        this.setOnMouseExited(e -> setBlack());
-        this.setOnMousePressed(e -> setGray());
-        this.setOnMouseReleased(e -> setBlue());
-        this.setOnMouseClicked(e -> jouer());
-    	
-		
         
         this.couleurNoir = couleurNoir;
         this.couleurBlanc = couleurBlanc;
@@ -79,79 +72,37 @@ public class CaseAjustable extends CanvasAjustable {
         
     }
     
-    private void setBlack() {
-        J.appel(this);
-        
-        pinceau.setStroke(Color.BLACK);
-        viderDessin();
-        dessinerCase();
-    }
-    
-    private void setRed() {
-        J.appel(this);
-        
-        Color Oldcolor = (Color) pinceau.getFill();
-        if(Oldcolor == Color.LIGHTBLUE) {
-        pinceau.setStroke(Color.RED);
-        viderDessin();
-        dessinerCase();
-        }
-        
-    }
-    
-    private void setGray() {
-        J.appel(this);
-        
-        Color Oldcolor = (Color) pinceau.getFill();
-        if(Oldcolor == Color.LIGHTBLUE) {
-        pinceau.setFill(Color.GRAY);
-        pinceau.setStroke(Color.RED);
-        viderDessin();
-        dessinerCase();
-        }
-    }
-    
-    private void setBlue() {
-        J.appel(this);
-        Color Oldcolor = (Color) pinceau.getFill();
-        if(Oldcolor == Color.GRAY) {
-        pinceau.setFill(Color.LIGHTBLUE);
-        pinceau.setStroke(Color.BLACK);
-        viderDessin();
-        dessinerCase();
-        }
-    }
-    
-    public void jouer() {
-        J.appel(this);
-        
-        if(actif) {
-        jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
-		jouerIciPourEnvoi.envoyerCommande();    
-		actif = false;
-        }
-    }
 
-    public void afficherJeton(Couleur couleur) {
-        J.appel(this);
-        
-        switch(couleur) {
-        
-            case NOIR:
-                pinceau.setFill(couleurNoir);
-                pinceau.setStroke(Color.BLACK);
-                viderDessin();
-                dessinerCase();
-                
-            break;
+   
 
-            case BLANC:
-                pinceau.setFill(couleurBlanc);
-                pinceau.setStroke(Color.BLACK);
-                viderDessin();
-                dessinerCase();
-                
-            break;
+    public void afficherJeton(Couleur couleur, boolean invisible) {
+        J.appel(this);
+        if(!invisible) {
+	        switch(couleur) {
+	        
+	            case NOIR:
+	                pinceau.setFill(couleurNoir);
+	                pinceau.setStroke(Color.BLACK);
+	                viderDessin();
+	                dessinerCase();
+	                
+	            break;
+	
+	            case BLANC:
+	                pinceau.setFill(couleurBlanc);
+	                pinceau.setStroke(Color.BLACK);
+	                viderDessin();
+	                dessinerCase();
+	                
+	            break;
+	        }
+        }else {
+        	
+            pinceau.setFill(Color.LIGHTBLUE);
+            pinceau.setStroke(Color.BLACK);
+            viderDessin();
+            dessinerCase();
+        	
         }
     }
 

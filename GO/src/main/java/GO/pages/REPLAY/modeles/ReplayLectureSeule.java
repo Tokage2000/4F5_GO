@@ -1,4 +1,4 @@
-package GO.pages.REPLAY.modeles;
+package GO.pages.replay.modeles;
 
 import ntro.mvc.modeles.ModeleLectureSeule;
 

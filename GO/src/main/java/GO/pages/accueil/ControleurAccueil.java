@@ -5,6 +5,7 @@ import ntro.debogage.Erreur;
 import ntro.debogage.J;
 import ntro.systeme.Systeme;
 import GO.client.MonClient;
+import GO.client.MonClientEn;
 import GO.commandes.nouvelle_partie_reseau.NouvellePartieReseau;
 import GO.messages.nouvelle_partie_reseau.MsgNouvellePartie;
 import GO.messages.nouvelle_partie_reseau.MsgNouvellePartieRecu;
@@ -41,10 +42,10 @@ import GO.commandes.ouvrir_resultats.OuvrirResultatsRecue;
 import GO.commandes.quitter.Quitter;
 import GO.commandes.quitter.QuitterRecue;
 import GO.enumerations.Couleur;
-import GO.pages.REPLAY.afficheurs.AfficheurReplay;
-import GO.pages.REPLAY.controleurs.ControleurReplay;
-import GO.pages.REPLAY.modeles.Replay;
-import GO.pages.REPLAY.vues.VueReplay;
+import GO.pages.replay.afficheurs.AfficheurReplay;
+import GO.pages.replay.controleurs.ControleurReplay;
+import GO.pages.replay.modeles.Replay;
+import GO.pages.replay.vues.VueReplay;
 import GO.pages.parametres.AfficheurParametres;
 import GO.pages.parametres.ControleurParametres;
 import GO.pages.parametres.Parametres;
@@ -63,7 +64,6 @@ import GO.pages.resultats.modeles.Resultats;
 import GO.pages.resultats.vues.VueResultats;
 
 import static GO.Constantes.*;
-import static GO.Constantes.ID_MODELE_PAR_DEFAUT;
 
 import java.awt.List;
 import java.io.IOException;
@@ -267,7 +267,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		J.appel(this);
 
 		ChargeurDeVue<VueReplay> chargeur;
-		chargeur = new ChargeurDeVue<VueReplay>(CHEMIN_REPLAY_FXML);
+		chargeur = new ChargeurDeVue<VueReplay>(CHEMIN_REPLAY_FXML, CHEMIN_REPLAY_CSS, CHEMIN_CHAINES_FRANCAIS);
 		
 		sceneReplay = chargeur.nouvelleScene(LARGEUR_REPLAY_PIXELS, 
 				                                 HAUTEUR_REPLAY_PIXELS);
@@ -341,8 +341,8 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 	
 	private void initierNouvellePartieReseau() {
 		J.appel(this);
-		
-		if(MonClient.siConnecteAuServeur()) {
+		//Faire un deuxieme Controlleur préférable?
+		if(MonClient.siConnecteAuServeur() || MonClientEn.siConnecteAuServeur()) {
 			
 			messageNouvellePartieReseau.setParametres(parametres);
 			messageNouvellePartieReseau.envoyerMessage();

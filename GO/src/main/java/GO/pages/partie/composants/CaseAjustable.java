@@ -33,7 +33,7 @@ public class CaseAjustable extends CanvasAjustable {
     private int indiceX;
     private int indiceY;
     
-    private boolean actif = true;
+    private boolean actif = true, actif2 = true;
     
     private Timeline animationEntreeJeton;
     
@@ -128,7 +128,6 @@ public class CaseAjustable extends CanvasAjustable {
         if(actif) {
         jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
 		jouerIciPourEnvoi.envoyerCommande();    
-		actif = false;
         }
     }
 
@@ -142,16 +141,26 @@ public class CaseAjustable extends CanvasAjustable {
                 pinceau.setStroke(Color.BLACK);
                 viderDessin();
                 dessinerCase();
-                
-            break;
+                actif = false;
+            	actif2 = false;
+                break;
 
             case BLANC:
                 pinceau.setFill(couleurBlanc);
                 pinceau.setStroke(Color.BLACK);
                 viderDessin();
                 dessinerCase();
-                
-            break;
+                actif = false;
+            	actif2 = false;
+                break;
+            case AUCUNE:
+            	pinceau.setFill(Color.LIGHTBLUE);
+                pinceau.setStroke(Color.BLACK);
+                viderDessin();
+                dessinerCase();
+                actif = true;
+            	actif2 = true;
+                break;
         }
     }
 
@@ -308,8 +317,9 @@ public class CaseAjustable extends CanvasAjustable {
 	
     public void animerEntreeJeton() {
         J.appel(this);
-        
+        if(actif) {
         animationEntreeJeton.playFromStart();
+        }
     }
 
 	
@@ -325,6 +335,7 @@ public class CaseAjustable extends CanvasAjustable {
         animationEntreeJeton.getKeyFrames().add(
                 new KeyFrame(new Duration(200),
                              new KeyValue(this.opacityProperty(), 1))); 
+
     }
 
 	

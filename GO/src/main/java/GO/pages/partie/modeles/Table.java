@@ -33,6 +33,8 @@ public class Table implements TableLectureSeule {
 		
 		jetons.add(jeton);
 		
+		jetons.remove(0);
+		
 		return jeton;
 	}
 

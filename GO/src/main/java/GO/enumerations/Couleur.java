@@ -3,6 +3,7 @@ package GO.enumerations;
 public enum Couleur {
 
     BLANC,
-    NOIR;
+    NOIR,
+	AUCUNE;
 
 }

@@ -31,15 +31,15 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
 	public void rafraichirAffichage(PLS partieLectureSeule, V vue) {
 		J.appel(this);
 
-		TableLectureSeule grille = partieLectureSeule.getTable();
+		TableLectureSeule table = partieLectureSeule.getTable();
 		
-		int tailleGrille = partieLectureSeule.getTaille();
+		int tailleTable = partieLectureSeule.getTaille();
 		
-		rafraichirTable(tailleGrille, grille, vue);
-		animerDernierJeton(partieLectureSeule, vue, tailleGrille);
+		rafraichirTable(tailleTable, table, vue);
+		animerDernierJeton(partieLectureSeule, vue);
 	}
 
-	private void animerDernierJeton(PLS partieLectureSeule, V vue, int hauteurGrille) {
+	private void animerDernierJeton(PLS partieLectureSeule, V vue) {
 		J.appel(this);
 
 		JetonLectureSeule dernierJeton = partieLectureSeule.getDernierJetonAjoute();
@@ -48,11 +48,20 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
             vue.animerEntreeJeton(dernierJeton.getIndiceX(), dernierJeton.getIndiceY());
         }
 	}
-
-	private void rafraichirTable(int tailleGrille, TableLectureSeule table, V vue) {
+    //this is horrible but works for now, to change later
+	private void rafraichirTable(int tailleTable, TableLectureSeule table, V vue) {
 		J.appel(this);
-
+		
 		List<JetonLectureSeule> jetons = table.getJetons();
+		
+		for(int i = 0; i < tailleTable; i++) {
+			for(int y = 0; y < tailleTable; y++) {
+				
+					afficherJeton(tailleTable, i, y, Couleur.AUCUNE, vue);
+				
+			}
+		}
+		
 		
 		for(int NoJeton = 0; NoJeton < jetons.size(); NoJeton++) {
 			
@@ -64,7 +73,7 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
 			
 			
 			
-			afficherJeton(tailleGrille, indiceX, indiceY, couleur, vue);
+			afficherJeton(tailleTable, indiceX, indiceY, couleur, vue);
 
 		}
 	}

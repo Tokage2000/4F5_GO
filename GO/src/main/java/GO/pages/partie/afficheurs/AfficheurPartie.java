@@ -48,7 +48,7 @@ public abstract class   AfficheurPartie<PLS extends PartieLectureSeule,
             vue.animerEntreeJeton(dernierJeton.getIndiceX(), dernierJeton.getIndiceY());
         }
 	}
-    //this is horrible but works for now, to change later
+
 	private void rafraichirTable(int tailleTable, TableLectureSeule table, V vue) {
 		J.appel(this);
 		

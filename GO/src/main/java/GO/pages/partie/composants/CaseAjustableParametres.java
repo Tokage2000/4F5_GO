@@ -49,7 +49,6 @@ public class CaseAjustableParametres extends CanvasAjustable {
             case NOIR:
                 pinceau.setFill(couleurNoir);
                 dessinerCase();
-                System.out.println("Bon");
             break;
 
             case BLANC:

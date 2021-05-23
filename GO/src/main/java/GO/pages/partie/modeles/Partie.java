@@ -26,7 +26,6 @@ public class      Partie<PLS extends PartieLectureSeule>
 
 		taille = Constantes.TABLE_PAR_DEFAUT.getTaille();
 		couleurCourante = Couleur.NOIR;
-
 		initialiserTable();
 	}
 
@@ -41,7 +40,7 @@ public class      Partie<PLS extends PartieLectureSeule>
 	public void apresChargementJson() {
 		J.appel(this);
 		
-		table.apresChargementJson();
+		table.apresChargementJson(getTaille());
 	}
 	
 	

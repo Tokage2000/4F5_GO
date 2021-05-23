@@ -10,6 +10,11 @@ public class Constantes {
 	public static final String CHEMIN_PARAMETRES_FXML = "/parametres/structure.xml";
 	public static final String CHEMIN_PARTIE_LOCALE_FXML = "/partie/locale/structure.xml";
 	public static final String CHEMIN_RESULTATS_FXML = "/resultats/structure.xml";
+	public static final String CHEMIN_PARAMETRES_CSS = "/parametres/style.css";
+	public static double AJUSTEMENT_TAILLE_PIXELS = 1.0;
+    public static final int TAILLE_POLICE = 15;
+    public static final int TAILLE_POLICE_MIN = 11;
+    public static final int TAILLE_POLICE_MAX = 18;
 	
 	public static final String CHEMIN_REPLAY_FXML = "/replay/structure.xml";
 	public static final String CHEMIN_REPLAY_CSS = "/replay/style.css";

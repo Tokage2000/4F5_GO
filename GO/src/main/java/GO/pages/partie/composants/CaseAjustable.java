@@ -33,6 +33,7 @@ public class CaseAjustable extends CanvasAjustable {
     private int indiceX;
     private int indiceY;
     
+    
     private boolean actif = true, actif2 = true;
     
     private Timeline animationEntreeJeton;
@@ -59,6 +60,8 @@ public class CaseAjustable extends CanvasAjustable {
         //bouton.setTranslateY(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
         //bouton.getStyleClass().add("buttontrans");
       //this.getChildren().add(bouton);
+        
+
         
         this.setOnMouseEntered(e -> setRed());
         this.setOnMouseExited(e -> setBlack());
@@ -127,7 +130,7 @@ public class CaseAjustable extends CanvasAjustable {
         
         if(actif) {
         jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
-		jouerIciPourEnvoi.envoyerCommande();    
+		jouerIciPourEnvoi.envoyerCommande();
         }
     }
 

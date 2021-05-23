@@ -34,7 +34,7 @@ public class      Partie<PLS extends PartieLectureSeule>
 		J.appel(this);
 
 		table = new Table();
-		table.apresCreation();
+		table.apresCreation(getTaille());
 	}
 
 	@Override

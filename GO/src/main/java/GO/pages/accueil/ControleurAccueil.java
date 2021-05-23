@@ -209,7 +209,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		J.appel(this);
 
 		ChargeurDeVue<VueParametres> chargeur;
-		chargeur = new ChargeurDeVue<VueParametres>(CHEMIN_PARAMETRES_FXML);
+		chargeur = new ChargeurDeVue<VueParametres>(CHEMIN_PARAMETRES_FXML, CHEMIN_PARAMETRES_CSS, CHEMIN_CHAINES);
 		
 		sceneParametres = chargeur.nouvelleScene(LARGEUR_PARAMETRES_PIXELS, 
 				                                 HAUTEUR_PARAMETRES_PIXELS);
@@ -336,7 +336,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 
 		partieLocale = EntrepotDeModeles.creerModele(PartieLocale.class, ID_MODELE_PAR_DEFAUT);
 		partieLocale.setTaille(parametres.getTailleTable().getTaille());
-		partieLocale.setCouleurCourante(parametres.getQuiEsTu());
+		partieLocale.setCouleurCourante(parametres.getQuiCommence());
 	}
 	
 	private void initierNouvellePartieReseau() {
@@ -373,7 +373,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 
 		PartieReseau partie = EntrepotDeModeles.creerModele(PartieReseau.class, ID_MODELE_PAR_DEFAUT);
 		
-		partie.setCouleurCourante(parametres.getQuiEsTu());
+		partie.setCouleurCourante(parametres.getQuiCommence());
 		partie.setTaille(parametres.getTailleTable().getTaille());
 		return partie;
 	}

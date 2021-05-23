@@ -11,10 +11,11 @@ public class Table implements TableLectureSeule {
 	
 	private List<Jeton> jetons = new ArrayList<>();
 
-	public void apresCreation() {
+	public void apresCreation(int size) {
 		J.appel(this);
 
 		jetons = new ArrayList<>();
+		int[][] table = new int[size][size];
 		
 	}
 
@@ -31,11 +32,31 @@ public class Table implements TableLectureSeule {
 		jeton.setIndiceY(Y);
 		jeton.setIndiceX(X);
 		
+		if(jeton.getCouleur()==Couleur.BLANC) {
+			
+		}
+		
 		jetons.add(jeton);
 		
-		jetons.remove(0);
+		start();
 		
 		return jeton;
+	}
+	
+	
+	
+
+	private void start() {
+		
+		test();
+	}
+	
+	
+
+	private void test() {
+		
+		
+		
 	}
 
 	@Override

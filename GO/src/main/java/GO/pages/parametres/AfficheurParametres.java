@@ -16,7 +16,7 @@ public class   AfficheurParametres
 		J.appel(this);
 
 		vue.afficherTailleTable(modeleLectureSeule.getTailleTable());
-		vue.afficherQuiEsTu(modeleLectureSeule.getQuiEsTu());
+		vue.afficherQuiCommence(modeleLectureSeule.getQuiCommence());
 	}
 
 }

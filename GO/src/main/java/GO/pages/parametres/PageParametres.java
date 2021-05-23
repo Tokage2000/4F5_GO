@@ -14,11 +14,13 @@ import ntro.mvc.controleurs.FabriqueControleur;
 import ntro.mvc.modeles.EntrepotDeModeles;
 import ntro.systeme.Systeme;
 
-import java.util.Random;
 import static GO.Constantes.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+
+
+import GO.client.MonClientWebSocket;
 
 public class PageParametres extends Application {
 //public static final String[] IDS_MODELES_TESTS = {"test01","test02","test03"};
@@ -27,8 +29,6 @@ public class PageParametres extends Application {
 		
 		J.appel(PageParametres.class);
 	}
-	
-	private Random alea = new Random();
 	
 	public static void main(String[] args) {
 		J.appel(PageParametres.class);
@@ -39,8 +39,11 @@ public class PageParametres extends Application {
 	public void start(Stage fenetrePrincipale) throws Exception {
 		J.appel(this);
 		
+		connecterAuServeur();
+		
 		ChargeurDeVue<VueParametres> chargeur;
-		chargeur = new ChargeurDeVue<VueParametres>(CHEMIN_PARAMETRES_FXML);
+		chargeur = new ChargeurDeVue<VueParametres>(CHEMIN_PARAMETRES_FXML, CHEMIN_PARAMETRES_CSS,
+				CHEMIN_CHAINES);
 
 		VueParametres vue = chargeur.getVue();
 		
@@ -75,5 +78,40 @@ public class PageParametres extends Application {
 				Systeme.quitter();
 			}
 		});
+	}
+	
+
+	private void connecterAuServeur() {
+		J.appel(this);
+
+		URI uriServeur = null;
+		
+		try {
+
+			uriServeur = new URI(ADRESSE_SERVEUR);
+
+		} catch (URISyntaxException e) {
+			
+			Erreur.fatale("L'adresse du serveur est mal formée: " + ADRESSE_SERVEUR, e);
+		}
+
+		connecterAuServeur(uriServeur);
+	}
+	
+	private void connecterAuServeur(URI uriServeur) {
+		J.appel(this);
+
+		MonClientWebSocket clientWebSocket = new MonClientWebSocket(uriServeur);
+		
+		Erreur.avertissement("Tentative de connexion au serveur... ");
+		
+		try {
+
+			clientWebSocket.connectBlocking();
+
+		} catch (InterruptedException e) {
+			
+			Erreur.nonFatale("Tentative de connexion annulée", e);
+		}
 	}
 }

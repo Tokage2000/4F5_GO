@@ -10,42 +10,44 @@ import ntro.debogage.DoitEtre;
 import ntro.debogage.J;
 import ntro.mvc.Vue;
 import GO.commandes.fermer_parametres.FermerParametresPourEnvoi;
-import GO.commandes.choisir_Qui_Es_Tu.ChoisirQuiEsTu;
-import GO.commandes.choisir_Qui_Es_Tu.ChoisirQuiEsTuPourEnvoi;
 import GO.commandes.choisir_Taille_Table.ChoisirTailleTablePourEnvoi;
+import GO.commandes.choisir_qui_commence.ChoisirQuiCommence;
+import GO.commandes.choisir_qui_commence.ChoisirQuiCommencePourEnvoi;
 import GO.commandes.fermer_parametres.FermerParametres;
 import GO.commandes.choisir_Taille_Table.ChoisirTailleTable;
-
 import GO.enumerations.Couleur;
 import GO.enumerations.TailleTable;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import GO.pages.partie.composants.CaseAjustableParametres;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.layout.Background;
+/*import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
-import javafx.scene.paint.Color;
+import javafx.scene.paint.Color;*/
 
 
 public class VueParametres implements Vue, Initializable {
 	
-	private ChoisirQuiEsTuPourEnvoi choisirQuiEsTu;
+	private ChoisirQuiCommencePourEnvoi choisirQuiCommence;
 	private ChoisirTailleTablePourEnvoi choisirTailleTable;
 	private FermerParametresPourEnvoi fermerParametres;
 	
-	private Couleur quiEsTu = Couleur.BLANC;
-	private TailleTable taille = TailleTable.MOYENNE;
+	/*private Couleur quiCommence = Couleur.BLANC;
+	private TailleTable taille = TailleTable.MOYENNE;*/
 
 	@FXML 
-	private Button caseNOIR, caseBLANC, boutonOk, boutonAnnuler;
+	private CaseAjustableParametres caseNoir, caseBlanc;
 	
 	@FXML
 	private CheckBox checkNOIR, checkBLANC;
 
+	@FXML
+	private Button boutonOk;
+	
 	@FXML
 	private ComboBox<String> choixTaille;
 	
@@ -56,16 +58,15 @@ public class VueParametres implements Vue, Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		J.appel(this);
 		
-		DoitEtre.nonNul(caseNOIR);
-		DoitEtre.nonNul(caseBLANC);
+		DoitEtre.nonNul(caseNoir);
+		DoitEtre.nonNul(caseBlanc);
 		DoitEtre.nonNul(checkNOIR);
 		DoitEtre.nonNul(checkBLANC);
 		DoitEtre.nonNul(choixTaille);
-		
+		DoitEtre.nonNul(boutonOk);
 
-
-		caseNOIR.setBackground(new Background(new BackgroundFill(Color.BLACK, null, null)));
-		caseBLANC.setBackground(new Background(new BackgroundFill(Color.WHITE, null, null)));
+		caseNoir.afficherJeton(Couleur.NOIR);
+		caseBlanc.afficherJeton(Couleur.BLANC);
 		
 		initialiserChoixTaille(resources);
 	}
@@ -82,6 +83,7 @@ public class VueParametres implements Vue, Initializable {
 			tailleSelonNom.put(nomTaille, tailleTable);
 			nomSelonTaille.put(tailleTable, nomTaille);
 		}
+		
 		choixTaille.getSelectionModel().clearAndSelect(0);
 	}
 
@@ -90,7 +92,7 @@ public class VueParametres implements Vue, Initializable {
 		J.appel(this);
 		
 		fermerParametres = FabriqueCommande.obtenirCommandePourEnvoi(FermerParametres.class);
-		choisirQuiEsTu = FabriqueCommande.obtenirCommandePourEnvoi(ChoisirQuiEsTu.class);
+		choisirQuiCommence = FabriqueCommande.obtenirCommandePourEnvoi(ChoisirQuiCommence.class);
 		choisirTailleTable = FabriqueCommande.obtenirCommandePourEnvoi(ChoisirTailleTable.class);
 	}
 
@@ -103,8 +105,8 @@ public class VueParametres implements Vue, Initializable {
 			public void handle(ActionEvent event) {
 				J.appel(this);
 				
-				quiEsTu = Couleur.NOIR;
-				afficherQuiEsTu(Couleur.NOIR);
+				choisirQuiCommence.setCouleur(Couleur.NOIR);
+				choisirQuiCommence.envoyerCommande();
 			}
 		});
 		
@@ -113,26 +115,8 @@ public class VueParametres implements Vue, Initializable {
 			public void handle(ActionEvent event) {
 				J.appel(this);
 
-				quiEsTu = Couleur.BLANC;
-				afficherQuiEsTu(Couleur.BLANC);
-
-			}
-		});
-
-		choixTaille.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				J.appel(this);
-				
-				String nomTailleChoisie = choixTaille.getSelectionModel().getSelectedItem();
-			
-				
-				TailleTable tailleChoisie = tailleSelonNom.get(nomTailleChoisie);
-				
-				
-				taille = tailleChoisie;
-				
-				
+				choisirQuiCommence.setCouleur(Couleur.BLANC);
+				choisirQuiCommence.envoyerCommande();
 			}
 		});
 		
@@ -143,22 +127,27 @@ public class VueParametres implements Vue, Initializable {
 				
 				
 				
-				choisirQuiEsTu.setCouleur(quiEsTu);
+				/*choisirQuiCommence.setCouleur(quiCommence);
 				choisirTailleTable.setTailleTable(taille);
 				
-				choisirQuiEsTu.envoyerCommande();
-				choisirTailleTable.envoyerCommande();
+				choisirQuiCommence.envoyerCommande();
+				choisirTailleTable.envoyerCommande();*/
 				
 				fermerParametres.envoyerCommande();
 			}
 		});
 		
-		boutonAnnuler.setOnAction(new EventHandler<ActionEvent>() {
+		choixTaille.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				J.appel(this);
-
-				fermerParametres.envoyerCommande();
+				
+				String nomTailleChoisie = choixTaille.getSelectionModel().getSelectedItem();
+				
+				TailleTable tailleChoisie = tailleSelonNom.get(nomTailleChoisie);
+				
+				choisirTailleTable.setTailleTable(tailleChoisie);
+				choisirTailleTable.envoyerCommande();
 			}
 		});
 	}
@@ -168,7 +157,7 @@ public class VueParametres implements Vue, Initializable {
 		J.appel(this);
 	}
 
-	public void afficherQuiEsTu(Couleur couleur) {
+	public void afficherQuiCommence(Couleur couleur) {
 		J.appel(this);
 		
 		DoitEtre.nonNul(couleur);

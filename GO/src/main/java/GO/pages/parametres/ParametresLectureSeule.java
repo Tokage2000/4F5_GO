@@ -6,6 +6,6 @@ import ntro.mvc.modeles.ModeleLectureSeule;
 
 public interface ParametresLectureSeule extends ModeleLectureSeule {
 	
-	Couleur getQuiEsTu();
+	Couleur getQuiCommence();
 	TailleTable getTailleTable();
 }

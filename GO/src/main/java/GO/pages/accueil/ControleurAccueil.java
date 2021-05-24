@@ -205,7 +205,8 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		ouvrirPartieLocale();
 	}
 
-	  private void instancierControleurParametres() {
+	//parametre
+	private void instancierControleurParametres() {
 		J.appel(this);
 
 		ChargeurDeVue<VueParametres> chargeur;
@@ -227,8 +228,8 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 				                           vueParametres, 
 				                           afficheurParametres);
 	}
-	  
-		private void instancierControleurResultats() {
+	//Resultats
+	private void instancierControleurResultats() {
 			J.appel(this);
 
 			ChargeurDeVue<VueResultats> chargeur;
@@ -278,7 +279,8 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 			FabriqueControleur.creerControleur(ControleurResultats.class, resultats, vueResultats, afficheurResultats);
 		}
 	  
-	  private void instancierControleurReplay() {
+	//Replay
+	private void instancierControleurReplay() {
 		J.appel(this);
 
 		ChargeurDeVue<VueReplay> chargeur;
@@ -292,12 +294,13 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		
 		replay.setCote(partieLocale.getTaille());
 		
-		if(partieLocale.getTable().getJetons().size() > 0) {
-		replay.setCouleurCourante(partieLocale.getTable().getJetons().get(0).getCouleur());
+		if(partieLocale.getTable().getHistorique().size() > 0) {
+		replay.setCouleurCourante(partieLocale.getQuiCommence());
 		}
-		for(int i = 0; i < partieLocale.getTable().getJetons().size(); i++) {
-			replay.effectuerCoup(partieLocale.getTable().getJetons().get(i).getIndiceX(), 
-								 partieLocale.getTable().getJetons().get(i).getIndiceY());
+		for(int i = 0; i < partieLocale.getTable().getHistorique().size(); i++) {
+			replay.getGrille().ajouterHistorique(partieLocale.getTable().getHistorique().get(i).getIndiceX(), 
+								 partieLocale.getTable().getHistorique().get(i).getIndiceY(),
+								 partieLocale.getTable().getHistorique().get(i).getCouleur());
 		}
 		
 		
@@ -310,6 +313,8 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 				                           vueReplay, 
 				                           afficheurReplay);
 	}
+	
+	//PartieLocale
 	private void ouvrirPartieLocale() {
 		J.appel(this);
 		
@@ -355,9 +360,9 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		partieLocale.setQuiCommence(parametres.getQuiCommence());
 	}
 	
+	//PartieReseau
 	private void initierNouvellePartieReseau() {
 		J.appel(this);
-		//Faire un deuxieme Controlleur préférable?
 		if(MonClient.siConnecteAuServeur() || MonClientEn.siConnecteAuServeur()) {
 			
 			messageNouvellePartieReseau.setParametres(parametres);
@@ -412,7 +417,6 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 	private void fermerParametres() {
 		J.appel(this);
 		
-		sauvegarderParametres();
 		if(dialogueParametres != null) {
 			dialogueParametres.close();
 		}
@@ -460,7 +464,6 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		dialogueReplay.setMaxHeight(HAUTEUR_REPLAY_PIXELS_MAX);
 	}
 	
-	//Demander une meilleur facon de transferer les donnï¿½es
 	private void fermerReplay() {
 		J.appel(this);
 		
@@ -483,20 +486,6 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		if (partieLocale != null) {
 			try {
 				EntrepotDeModeles.sauvegarderModele(partieLocale);
-
-			} catch (IOException e) {
-
-				Erreur.nonFatale("Impossible de sauvegarder la partie locale", e);
-			}
-		}
-	}
-	//Inutilise pour l'instant
-	private void sauvegarderParametres() {
-		J.appel(this);
-
-		if (partieLocale != null) {
-			try {
-				EntrepotDeModeles.sauvegarderModele(parametres);
 
 			} catch (IOException e) {
 

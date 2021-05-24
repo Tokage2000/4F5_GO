@@ -6,8 +6,6 @@ import GO.pages.replay.vues.VueReplay;
 import ntro.debogage.J;
 import ntro.mvc.controleurs.ControleurModeleVue;
 import ntro.mvc.controleurs.RecepteurCommandeMVC;
-import GO.commandes.precedent.Precedent;
-import GO.commandes.precedent.PrecedentRecue;
 import GO.commandes.suivant.Suivant;
 import GO.commandes.suivant.SuivantRecue;
 import GO.pages.replay.afficheurs.AfficheurReplay;
@@ -49,16 +47,6 @@ public class ControleurReplay
 			}
 		});
 		
-		installerRecepteurCommande(Precedent.class, new RecepteurCommandeMVC<PrecedentRecue>() {
-
-			@Override
-			public void executerCommandeMVC(PrecedentRecue commande) {
-				J.appel(this);
-
-				reagirCommandePrecedent(commande);
-
-			}
-		});
 	}
 
 	protected void reagirCommandeSuivant(SuivantRecue suivantRecue) {
@@ -67,9 +55,4 @@ public class ControleurReplay
 		getModele().suivant();
 	}
 	
-	protected void reagirCommandePrecedent(PrecedentRecue PrecedentRecue) {
-		J.appel(this);
-
-		getModele().precedent();
-	}
 }

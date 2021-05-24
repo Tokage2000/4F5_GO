@@ -44,13 +44,13 @@ public class ConteneurLigneRP extends HBox {
 	}
 	
 
-	public void afficherJeton(int indiceColonne, Couleur couleur, boolean invisible) {
+	public void afficherJeton(int indiceColonne, Couleur couleur) {
 		J.appel(this);
 		
 		if(siIndiceColonneValide(indiceColonne)) {
 
 			CaseAjustableRP caseAjustable = getCase(indiceColonne);
-			caseAjustable.afficherJeton(couleur, invisible);
+			caseAjustable.afficherJeton(couleur);
 		}
 	}
 

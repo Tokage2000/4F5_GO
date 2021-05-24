@@ -34,6 +34,7 @@ public class CaseAjustableRP extends CanvasAjustable {
     private int indiceY;
     
     private boolean actif = true;
+    private boolean actif2 = true;
     
     private Timeline animationEntreeJeton;
     
@@ -75,34 +76,36 @@ public class CaseAjustableRP extends CanvasAjustable {
 
    
 
-    public void afficherJeton(Couleur couleur, boolean invisible) {
+    public void afficherJeton(Couleur couleur) {
         J.appel(this);
-        if(!invisible) {
-	        switch(couleur) {
-	        
-	            case NOIR:
-	                pinceau.setFill(couleurNoir);
-	                pinceau.setStroke(Color.BLACK);
-	                viderDessin();
-	                dessinerCase();
-	                
-	            break;
-	
-	            case BLANC:
-	                pinceau.setFill(couleurBlanc);
-	                pinceau.setStroke(Color.BLACK);
-	                viderDessin();
-	                dessinerCase();
-	                
-	            break;
-	        }
-        }else {
-        	
-            pinceau.setFill(Color.LIGHTBLUE);
-            pinceau.setStroke(Color.BLACK);
-            viderDessin();
-            dessinerCase();
-        	
+        
+        switch(couleur) {
+        
+            case NOIR:
+                pinceau.setFill(couleurNoir);
+                pinceau.setStroke(Color.BLACK);
+                viderDessin();
+                dessinerCase();
+                actif = false;
+            	actif2 = false;
+                break;
+
+            case BLANC:
+                pinceau.setFill(couleurBlanc);
+                pinceau.setStroke(Color.BLACK);
+                viderDessin();
+                dessinerCase();
+                actif = false;
+            	actif2 = false;
+                break;
+            case AUCUNE:
+            	pinceau.setFill(Color.LIGHTBLUE);
+                pinceau.setStroke(Color.BLACK);
+                viderDessin();
+                dessinerCase();
+                actif = true;
+            	actif2 = true;
+                break;
         }
     }
 

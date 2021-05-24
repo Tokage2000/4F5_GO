@@ -21,7 +21,7 @@ public class Replay extends Modele<ReplayLectureSeule>
 		J.appel(this);
 
 		grille = new Grille();
-		grille.apresCreation();
+		grille.apresCreation(getCote());
 	}
 
 	@Override
@@ -41,12 +41,6 @@ public class Replay extends Modele<ReplayLectureSeule>
 		grille.suivant();
 	}
 	
-	public void precedent() {
-		J.appel(this);
-		
-		grille.precedent();
-
-	}
 
 	public void jouerici(int x, int y) {
 		J.appel(this);
@@ -110,7 +104,7 @@ public class Replay extends Modele<ReplayLectureSeule>
 	@Override
 	public void apresChargementJson() {
 		
-		grille.apresChargementJson();
+		grille.apresChargementJson(getCote());
 	}
 
 }

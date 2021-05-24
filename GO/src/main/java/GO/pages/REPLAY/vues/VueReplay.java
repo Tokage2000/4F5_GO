@@ -10,8 +10,6 @@ import ntro.mvc.Vue;
 import GO.Constantes;
 import GO.commandes.fermer_replay.FermerReplay;
 import GO.commandes.fermer_replay.FermerReplayPourEnvoi;
-import GO.commandes.precedent.Precedent;
-import GO.commandes.precedent.PrecedentPourEnvoi;
 import GO.commandes.suivant.Suivant;
 import GO.commandes.suivant.SuivantPourEnvoi;
 import GO.enumerations.Couleur;
@@ -33,12 +31,11 @@ public class VueReplay implements Vue, Initializable {
 	private ConteneurGrilleRP conteneurGrilleRP;
 
 	@FXML
-	private Button suivant, quitter, precedant;
+	private Button suivant, quitter;
 
 	private Button[][] cases;
 
 	private SuivantPourEnvoi suivantPourEnvoi;
-	private PrecedentPourEnvoi precedentPourEnvoi;
 	private FermerReplayPourEnvoi fermerReplayPourEnvoi;
 
 	@Override
@@ -47,7 +44,6 @@ public class VueReplay implements Vue, Initializable {
 
 		DoitEtre.nonNul(conteneurGrilleRP);
 		DoitEtre.nonNul(suivant);
-		DoitEtre.nonNul(precedant);
 		DoitEtre.nonNul(quitter);
 	}
 
@@ -61,7 +57,6 @@ public class VueReplay implements Vue, Initializable {
 	public void obtenirCommandesPourEnvoi() {
 		J.appel(this);
 		suivantPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(Suivant.class);
-		precedentPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(Precedent.class);
 		fermerReplayPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(FermerReplay.class);
 	}
 
@@ -75,17 +70,6 @@ public class VueReplay implements Vue, Initializable {
 			public void handle(ActionEvent event) {
 				J.appel(this);
 				suivantPourEnvoi.envoyerCommande();
-				
-
-			}
-		});
-		
-		precedant.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				J.appel(this);
-				precedentPourEnvoi.envoyerCommande();
 				
 
 			}
@@ -111,10 +95,10 @@ public class VueReplay implements Vue, Initializable {
 		J.appel(this);
 	}
 
-	public void afficherJeton(int indiceX, int indiceY, Couleur couleur, Boolean invisible) {
+	public void afficherJeton(int indiceX, int indiceY, Couleur couleur) {
 		J.appel(this);
 
-		conteneurGrilleRP.afficherJeton(indiceX, indiceY, couleur, invisible);
+		conteneurGrilleRP.afficherJeton(indiceX, indiceY, couleur);
 	}
 
 	

@@ -12,29 +12,21 @@ public class Constantes {
 	public static final String CHEMIN_RESULTATS_FXML = "/resultats/structure.xml";
 	public static final String CHEMIN_PARAMETRES_CSS = "/parametres/style.css";
 	public static final String CHEMIN_RESULTATS_CSS = "/resultats/style.css";
+	public static final String CHEMIN_REPLAY_FXML = "/replay/structure.xml";
+	public static final String CHEMIN_REPLAY_CSS = "/replay/style.css";
+	public static final String CHEMIN_PARTIE_RESEAU_FXML = "/partie/reseau/structure.xml";
+	public static final String CHEMIN_PARTIE_LOCALE_CSS = "/partie/locale/style.css";
+	public static final String CHEMIN_PARTIE_RESEAU_CSS = "/partie/reseau/style.css";
+	public static final String CHEMIN_CHAINES = "traductions.chaines";
+	public static final String CHEMIN_CHAINES_FRANCAIS = "traductions.chaines_fr";
+	public static final String CHEMIN_CHAINES_ANGLAIS = "traductions.chaines_en";
 	
 	
 	public static double AJUSTEMENT_TAILLE_PIXELS = 1.0;
     public static final int TAILLE_POLICE = 15;
     public static final int TAILLE_POLICE_MIN = 11;
     public static final int TAILLE_POLICE_MAX = 18;
-	
-	public static final String CHEMIN_REPLAY_FXML = "/replay/structure.xml";
-	public static final String CHEMIN_REPLAY_CSS = "/replay/style.css";
-	
-	public static final String CHEMIN_PARTIE_RESEAU_FXML = "/partie/reseau/structure.xml";
-	
-	
-	public static final String CHEMIN_PARTIE_LOCALE_CSS = "/partie/locale/style.css";
-	public static final String CHEMIN_PARTIE_RESEAU_CSS = "/partie/reseau/style.css";
-	
-	public static final String CHEMIN_CHAINES = "traductions.chaines";
-	
-	public static final String CHEMIN_CHAINES_FRANCAIS = "traductions.chaines_fr";
-	public static final String CHEMIN_CHAINES_ANGLAIS = "traductions.chaines_en";
 
-
-	
 	public static final int TABLE_PETITE = 9;
 	public static final int TABLE_MOYENNE = 13;
 	public static final int TABLE_GRANDE = 19;

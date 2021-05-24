@@ -47,13 +47,13 @@ public class ConteneurGrilleRP extends VBox {
         }
     }
 
-    public void afficherJeton(int indiceColonne, int indiceRangee, Couleur couleur, Boolean invisible) {
+    public void afficherJeton(int indiceColonne, int indiceRangee, Couleur couleur) {
         J.appel(this);
         
         if(siIndicesValides(indiceColonne, indiceRangee)) {
             
             ConteneurLigneRP conteneurLigne = getConteneurLigne(indiceRangee);
-            conteneurLigne.afficherJeton(indiceColonne, couleur, invisible);
+            conteneurLigne.afficherJeton(indiceColonne, couleur);
         }
     }
     

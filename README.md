@@ -2,17 +2,18 @@ Commandes Gradle Go
 
 Philippe Monette, Charles Albert Choupin, Mohammed Hafdi Idrissi, Mohammed Dahinine
 
-Noter: Les recepteurs de retour à l'accueil/Quitter sont dans le controlleur Acceuil et ne marchent pas quand on charge les page toutes seule.
-Replay a besoin d'acceuil pour fonctionner
 
-| Page   |      Commande Gradle      |  Personne(s) Responsable |
-|----------|:-------------:|------:|
-| Accueil |  GO_Main | Tous |
-| Accueil Anglais |  GO_MainEn | Tous |
-| PartieLocale |    GO_PartieLocale   |   Philippe Monette + Charles Albert Choupin |
-| PartieLocale |    GO_PartieLocaleEn   |   Philippe Monette + Charles Albert Choupin |
-| PartieReseau | GO_PartieReseau |    Philippe Monette + Charles Albert Choupin |
-| Replay | GO_Replay |    Philippe Monette + Charles Albert Choupin |
-| Parametres | GO_Parametres |    Mohammed Hafdi Idrissi |
-| Resultats | GO_Resultats |    Mohammed Dahinine |
-| Serveur | GO_Serveur |    Tous |
+
+| Page   |      Commande Gradle      |  Personne(s) Responsable | Note
+|----------|:-------------:|------:|------:|
+| Accueil |  GO_Main | Tous ||
+| Accueil Anglais |  GO_MainEn | Tous | Ne mets pas les pages en Anglais|
+| PartieLocale |    GO_PartieLocale   |   Philippe Monette + Charles Albert Choupin ||
+| PartieLocale |    GO_PartieLocaleEn   |   Philippe Monette + Charles Albert Choupin ||
+| PartieReseau | GO_PartieReseau |    Philippe Monette + Charles Albert Choupin ||
+| Replay | GO_Replay |    Philippe Monette + Charles Albert Choupin | À besoin d'acceuil pour fonctionner|
+| Parametres | GO_Parametres |    Mohammed Hafdi Idrissi ||
+| Parametres Anglais | GO_ParametresEn |    Mohammed Hafdi Idrissi ||
+| Resultats | GO_Resultats |    Mohammed Dahinine ||
+| Resultats Anglais | GO_ResultatsEn |    Mohammed Dahinine ||
+| Serveur | GO_Serveur |    Tous ||

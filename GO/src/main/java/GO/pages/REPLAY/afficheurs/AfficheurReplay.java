@@ -35,37 +35,40 @@ public class AfficheurReplay extends Afficheur<ReplayLectureSeule, VueReplay>
 		rafraichirTable(cote, grille, vue);
 	}
 
-	private void rafraichirTable(int cote, GrilleLectureSeule grille, VueReplay vue) {
+	private void rafraichirTable(int tailleTable, GrilleLectureSeule table, VueReplay vue) {
 		J.appel(this);
 		
-		clearTable(vue);
+		List<JetonLectureSeule> jetons = table.getJetons();
 		
-		List<JetonLectureSeule> jetons = grille.getJetons();
-		for (int indice = 0; indice < jetons.size(); indice++) {
+		for(int i = 0; i < tailleTable; i++) {
+			for(int y = 0; y < tailleTable; y++) {
+				
+					afficherJeton(tailleTable, i, y, Couleur.AUCUNE, vue);
+				
+			}
+		}
+		
+		
+		for(int NoJeton = 0; NoJeton < jetons.size(); NoJeton++) {
 			
-			Boolean invisible = false;
-			JetonLectureSeule jeton = jetons.get(indice);
+			
+			JetonLectureSeule jeton = jetons.get(NoJeton);
 			int indiceY = jeton.getIndiceY();
 			int indiceX = jeton.getIndiceX();
 			Couleur couleur = jeton.getCouleur();
-			if(indice>grille.getMax()-1) {
-				invisible = true;
-			}
-			afficherJeton(cote, indiceX, indiceY, couleur, vue, invisible);
+			
+			
+			
+			afficherJeton(tailleTable, indiceX, indiceY, couleur, vue);
 
 		}
 	}
 
-	private void afficherJeton(int tailleTable, int indiceX, int indiceY, Couleur couleur, VueReplay vue, Boolean invisible) {
+	private void afficherJeton(int tailleTable, int indiceX, int indiceY, Couleur couleur, VueReplay vue) {
 		J.appel(this);
 
-		vue.afficherJeton(indiceX, indiceY, couleur, invisible);
+		vue.afficherJeton(indiceX, indiceY, couleur);
 	}
 	
-	private void clearTable(VueReplay vue) {
-		J.appel(this);
-
-		//vue.clearTable();
-	}
 
 }

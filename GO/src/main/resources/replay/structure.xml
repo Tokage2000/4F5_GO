@@ -15,13 +15,8 @@
     </VBox>
     <VBox>
     <HBox alignment="center">
-        <Button text="Précédant" fx:id="precedant" />
         <Button text="Suivant" fx:id="suivant" />
-    </HBox>
-    </VBox>
-    <VBox>
-        <HBox alignment="center">
-        <Button text="Quitter" fx:id="quitter" />
+		<Button text="Quitter" fx:id="quitter" />
     </HBox>
     </VBox>
 </VBox>

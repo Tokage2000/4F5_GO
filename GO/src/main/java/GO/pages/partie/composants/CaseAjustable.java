@@ -51,16 +51,6 @@ public class CaseAjustable extends CanvasAjustable {
         
         this.indiceX = indiceX;
         this.indiceY = indiceY;
-        
-        //this.bouton = new Button();
-        //bouton.setShape(new Circle(Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE));
-        //bouton.setMinSize(2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE, 2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE);
-        //bouton.setMaxSize(2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE, 2*Constantes.TAILLE_CASE/2*TAILLE_POURCENTAGE);
-        //bouton.setTranslateX(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
-        //bouton.setTranslateY(Constantes.TAILLE_CASE*(1-TAILLE_POURCENTAGE)/2);
-        //bouton.getStyleClass().add("buttontrans");
-      //this.getChildren().add(bouton);
-        
 
         
         this.setOnMouseEntered(e -> setRed());
@@ -230,23 +220,11 @@ public class CaseAjustable extends CanvasAjustable {
         
         Case laCase = calculerCase(taillePourcentage);
         
-        //dessinerLigne(laCase);
         dessinerFond(laCase);
         dessinerContour(laCase);
         
     }
-    
-    private void dessinerLigne(Case laCase) {
-        J.appel(this);
-        
-        
-        Color Oldcolor = (Color) pinceau.getFill();
-        pinceau.setFill(Color.BLACK);
-        pinceau.fillRect(laCase.caseHautGaucheX-laCase.tailleCase*2, laCase.caseHautGaucheY + (laCase.tailleCase)/2, getWidth()*30, 1);
-        pinceau.fillRect(laCase.caseHautGaucheX + (laCase.tailleCase)/2, laCase.caseHautGaucheY-laCase.tailleCase*2, 1 , getHeight()*30);
-        pinceau.setFill(Oldcolor); 
-
-    }
+ 
 
     private void dessinerFond(Case laCase) {
         J.appel(this);
@@ -296,19 +274,6 @@ public class CaseAjustable extends CanvasAjustable {
 	public void installerCapteurJouerIci() {
 		J.appel(this);
 		
-		/*
-		this.bouton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				J.appel(this);
-				
-				jouerIciPourEnvoi.setIndiceJeton(indiceX, indiceY);
-				jouerIciPourEnvoi.envoyerCommande();
-				
-			}
-		});
-		*/
-		
 	
 	}
 	
@@ -318,6 +283,7 @@ public class CaseAjustable extends CanvasAjustable {
 		jouerIciPourEnvoi = FabriqueCommande.obtenirCommandePourEnvoi(JouerIci.class);
 	}
 	
+	//Animation
     public void animerEntreeJeton() {
         J.appel(this);
         if(actif) {

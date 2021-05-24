@@ -49,15 +49,15 @@ public class Table implements TableLectureSeule {
 		}
 		
 		
-		start( X,  Y,  couleur);
+		check( X,  Y,  couleur);
 		
 		return jeton;
 	}
 	
 	
 	
-
-	private void start(int X, int Y, Couleur OGcouleur) {
+	//Vérifie si il y a des jetons à enlever (envoie les 4 jeton qui touche le coup éffectuer à group)
+	private void check(int X, int Y, Couleur OGcouleur) {
 		J.appel(this);
 		
 		Couleur couleur;
@@ -112,6 +112,7 @@ public class Table implements TableLectureSeule {
 		
 	}
 	
+	//Voit si le groupe est entouré (et donc doit être éffacé)
 	private boolean libertycheck(int[][] groupeJeton){
 		J.appel(this);
 		
@@ -154,7 +155,7 @@ public class Table implements TableLectureSeule {
 		return test;
 	}
 	
-	
+	//Trouve le groupe associé à un jeton
 	private int[][] group(int X, int Y, Couleur couleur, int[][] groupeJeton) {
 		J.appel(this);
 		
@@ -172,7 +173,7 @@ public class Table implements TableLectureSeule {
 
 	}
 
-	
+	//Efface les jeton dans groupeJeton selon leur coordonées
 	private void rmJeton(int[][] groupeJeton) {
 		J.appel(this);
 		
@@ -199,6 +200,19 @@ public class Table implements TableLectureSeule {
 		List<JetonLectureSeule> jetonsLectureSeule = new ArrayList<>();
 		
 		for(Jeton jeton : jetons) {
+
+			jetonsLectureSeule.add((JetonLectureSeule) jeton);
+		}
+		
+		return jetonsLectureSeule;
+	}
+	
+	public List<JetonLectureSeule> getHistorique() {
+		J.appel(this);
+		
+		List<JetonLectureSeule> jetonsLectureSeule = new ArrayList<>();
+		
+		for(Jeton jeton : HistoriqueCoup) {
 
 			jetonsLectureSeule.add((JetonLectureSeule) jeton);
 		}

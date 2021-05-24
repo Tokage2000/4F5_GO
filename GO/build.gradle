@@ -44,9 +44,23 @@ task GO_Parametres (type:JavaExec) {
     jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
 }
 
+task GO_ParametresEn (type:JavaExec) {
+  dependsOn 'classes'
+  main = 'GO.pages.parametres.PageParametres'
+  classpath = sourceSets.main.runtimeClasspath
+  jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=en')
+ }
+
 task GO_Resultats (type:JavaExec) {
     dependsOn 'classes'
     main = 'GO.pages.resultats.PageResultats'
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
+}
+
+task GO_ResultatsEn (type:JavaExec) {
+    dependsOn 'classes'
+    main = 'GO.pages.resultats.PageResultatsEn'
     classpath = sourceSets.main.runtimeClasspath
     jvmArgs('-Dfile.encoding=UTF-8', '-Duser.language=fr')
 }

@@ -12,13 +12,11 @@ public class Table implements TableLectureSeule {
 	private List<Jeton> jetons = new ArrayList<>();
 	private List<Jeton> HistoriqueCoup = new ArrayList<>();
 	private transient Couleur[][] liste;
-	private transient int[][] id;
 	private transient int size;
 
 	public void apresCreation(int size) {
 		J.appel(this);
 		liste = new Couleur[size][size];
-		id = new int[size][size];
 		this.size = size;
 		
 	}
@@ -26,8 +24,10 @@ public class Table implements TableLectureSeule {
 	public void apresChargementJson(int size) {
 		J.appel(this);
 		liste = new Couleur[size][size];
-		id = new int[size][size];
 		this.size = size;
+		for(Jeton jeton : jetons) {
+			liste[jeton.getIndiceX()][jeton.getIndiceY()] = jeton.getCouleur();
+		}
 	}
 	
 	public Jeton ajouterJeton(int X, int Y, Couleur couleur) {
@@ -48,7 +48,6 @@ public class Table implements TableLectureSeule {
 			liste[X][Y] = Couleur.NOIR;
 		}
 		
-		id[X][Y] = jetons.size()-2;
 		
 		start( X,  Y,  couleur);
 		
@@ -59,8 +58,8 @@ public class Table implements TableLectureSeule {
 	
 
 	private void start(int X, int Y, Couleur OGcouleur) {
+		J.appel(this);
 		
-		int[][] test = new int[size][size];
 		Couleur couleur;
 		if(OGcouleur == Couleur.BLANC) {
 			couleur = Couleur.NOIR;
@@ -68,44 +67,114 @@ public class Table implements TableLectureSeule {
 			couleur = Couleur.BLANC;
 		}
 		
+		int[][] test = new int[size][size];
+		
 		if(Y+1<liste.length){
+
+			if(libertycheck(group(X, Y+1, couleur, test))){
 				rmJeton(group(X, Y+1, couleur, test));
+			}
 		}
 		
-		
+		test = new int[size][size];
 		
 		if(Y-1>=0){
+
+			if(libertycheck(group(X, Y-1, couleur, test))){
 				rmJeton(group(X, Y-1, couleur, test));
+			}
 		}
+		
+		test = new int[size][size];
 		
 		if(X+1<liste.length){
+
+			if(libertycheck(group(X+1, Y, couleur, test))){
 				rmJeton(group(X+1, Y, couleur, test));
+			}
 		}
 		
+		test = new int[size][size];
+		
 		if(X-1>=0){
+
+			if(libertycheck(group(X-1, Y, couleur, test))){
 				rmJeton(group(X-1, Y, couleur, test));
+			}
+		}
+		
+		test = new int[size][size];
+		
+
+		if(libertycheck(group(X, Y, OGcouleur, test))){
+			rmJeton(group(X, Y, OGcouleur, test));
 		}
 		
 	}
 	
-	
-	private int[][] group(int X, int Y, Couleur couleur, int[][] test) {
+	private boolean libertycheck(int[][] groupeJeton){
+		J.appel(this);
 		
-		System.out.println(X+" "+Y);
+		boolean test = true;
 		
+		System.out.println("auto");
+
 		
-		if(liste[X][Y] == couleur && test[X][Y] == 0) {
-			test[X][Y] = 1;
-			if(X+1<liste.length) {test = group(X+1, Y, couleur, test);}
-			if(X-1>=0) {test = group(X-1, Y, couleur, test);}
-			if(Y+1<liste.length) {test = group(X, Y+1, couleur, test);}
-			if(Y-1>=0) {test = group(X, Y-1, couleur, test);}
+		for(int X = 0; X < groupeJeton.length; X++) {
+			for(int Y = 0; Y < groupeJeton.length; Y++) {
+				
+				if(groupeJeton[X][Y] == 1) {
+					
+					if(Y+1<liste.length){
+						if(liste[X][Y+1] == null) {
+							test = false;
+						}
+					}
+					if(Y-1>=0){
+						if(liste[X][Y-1] == null) {
+							test = false;
+						}
+					}
+					
+					if(X+1<liste.length){
+						if(liste[X+1][Y] == null) {
+							test = false;
+						}
+					}
+					
+					if(X-1>=0){
+						if(liste[X-1][Y] == null) {
+							test = false;
+						}
+					}
+				}
+			}
 		}
-		return test;	
+		
+		return test;
+	}
+	
+	
+	private int[][] group(int X, int Y, Couleur couleur, int[][] groupeJeton) {
+		J.appel(this);
+		
+		
+		if(liste[X][Y] == couleur && groupeJeton[X][Y] == 0) {
+			groupeJeton[X][Y] = 1;
+			
+			if(X+1<liste.length) {groupeJeton = group(X+1, Y, couleur, groupeJeton);}
+			if(X-1>=0) {groupeJeton = group(X-1, Y, couleur, groupeJeton);}
+			if(Y+1<liste.length) {groupeJeton = group(X, Y+1, couleur, groupeJeton);}
+			if(Y-1>=0) {groupeJeton = group(X, Y-1, couleur, groupeJeton);}
+		}
+
+		return groupeJeton;	
+
 	}
 
 	
 	private void rmJeton(int[][] groupeJeton) {
+		J.appel(this);
 		
 		for(int X = 0; X < groupeJeton.length; X++) {
 			for(int Y = 0; Y < groupeJeton.length; Y++) {
@@ -113,6 +182,8 @@ public class Table implements TableLectureSeule {
 				    for(Jeton jeton : jetons) {
 				        if(jeton.getIndiceX() == X && jeton.getIndiceY() == Y ) {
 				            jetons.remove(jeton);
+				            groupeJeton[X][Y] = 0;
+				            liste[X][Y] = null;
 				            break;
 				        }
 				    }

@@ -17,6 +17,8 @@ public class      Partie<PLS extends PartieLectureSeule>
 
 	protected Table table;
 	
+	protected Couleur quiCommence;
+	
 	private transient Jeton dernierJetonAjoute;
 
 	
@@ -42,6 +44,19 @@ public class      Partie<PLS extends PartieLectureSeule>
 		
 		table.apresChargementJson(getTaille());
 	}
+	
+
+	public Couleur getQuiCommence() {
+		J.appel(this);
+		return quiCommence;
+	}
+	
+	public void setQuiCommence(Couleur quiCommence) {
+		J.appel(this);
+		
+		 this.quiCommence = quiCommence;
+	}
+
 	
 	
     public void jouerIci(int X, int Y){

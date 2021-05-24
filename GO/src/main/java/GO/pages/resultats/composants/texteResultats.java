@@ -15,44 +15,34 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with aquiletour.  If not, see <https://www.gnu.org/licenses/>
 
-
 package GO.pages.resultats.composants;
 
 import ntro.debogage.J;
 import GO.Constantes;
 import GO.enumerations.Couleur;
 import javafx.beans.NamedArg;
-
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
-public class ConteneurResultats extends VBox {
-    
-    private Color couleurRouge;
-    private Color couleurJaune;
-    
-    public ConteneurResultats(@NamedArg("couleurRouge") String couleurRouge, 
-    		               @NamedArg("couleurJaune") String couleurJaune) {
-        super();
+public class texteResultats extends Text {
+	private String texte;
+	
+	public texteResultats(@NamedArg("texte") String texte) {
+
         J.appel(this);
-
-        if(couleurRouge != null && !couleurRouge.isEmpty()) {
-            this.couleurRouge = Color.valueOf(couleurRouge);
-        }
-        
-        if(couleurJaune != null && !couleurJaune.isEmpty()) {
-            this.couleurJaune = Color.valueOf(couleurJaune);
-        }
-    }
-
-    public void creerGrille(int largeur, int hauteur) {
-        J.appel(this);
-        
-        this.getStyleClass().add("conteneurTableResultats");
-
-    
-    }
-
+   
+		this.texte = texte;
+	}
+	
+	public void creerTexte(){
+		
+		J.appel(this);
+		Text lol = new Text ("test");
+	
+		
+	}
 
 
 }

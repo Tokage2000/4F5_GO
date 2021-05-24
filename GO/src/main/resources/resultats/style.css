@@ -1,5 +1,11 @@
-.conteneurPrincipal{
-	
-	-fx-background-color: blue;
+.conteneurPrincipal {
+	-fx-alignment: center;
+	-fx-background-color: red;
+	-fx-padding: 4em;
+  }
 
+.resultats {
+	-fx-alignment: center;
+	-fx-min-width: 6em;
+	-fx-max-width: 60em;
 }

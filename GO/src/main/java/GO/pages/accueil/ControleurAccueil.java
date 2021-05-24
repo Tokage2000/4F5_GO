@@ -228,40 +228,55 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 				                           afficheurParametres);
 	}
 	  
-	  private void instancierControleurResultats() {
-		J.appel(this);
+		private void instancierControleurResultats() {
+			J.appel(this);
 
-		ChargeurDeVue<VueResultats> chargeur;
-		chargeur = new ChargeurDeVue<VueResultats>(CHEMIN_RESULTATS_FXML);
-		
-		sceneResultats = chargeur.nouvelleScene(LARGEUR_PARAMETRES_PIXELS, 
-				                                 HAUTEUR_PARAMETRES_PIXELS);
-		
-		resultats = EntrepotDeModeles.creerModele(Resultats.class, ID_MODELE_PAR_DEFAUT);
-		//1 = Noir 2 = Blanc
-		int tableau[][] = new int[partieLocale.getTaille()][partieLocale.getTaille()];
-		
-		for(int i = 0; i < partieLocale.getTable().getJetons().size(); i++) {
-			if(partieLocale.getTable().getJetons().get(i).getCouleur() == Couleur.NOIR) {
-				tableau[partieLocale.getTable().getJetons().get(i).getIndiceY()][partieLocale.getTable().getJetons().get(i).getIndiceX()] = 1;
-			}else if(partieLocale.getTable().getJetons().get(i).getCouleur() == Couleur.BLANC) {
-				tableau[partieLocale.getTable().getJetons().get(i).getIndiceY()][partieLocale.getTable().getJetons().get(i).getIndiceX()] = 2;
+			ChargeurDeVue<VueResultats> chargeur;
+			chargeur = new ChargeurDeVue<VueResultats>(CHEMIN_RESULTATS_FXML, CHEMIN_RESULTATS_CSS, CHEMIN_CHAINES_FRANCAIS);
+
+			sceneResultats = chargeur.nouvelleScene(LARGEUR_PARAMETRES_PIXELS, HAUTEUR_PARAMETRES_PIXELS);
+			resultats = EntrepotDeModeles.creerModele(Resultats.class, ID_MODELE_PAR_DEFAUT);
+			// 1 = Noir 2 = Blanc
+			
+			int tableau[][] = new int[partieLocale.getTaille()][partieLocale.getTaille()];
+
+			for (int i = 0; i < partieLocale.getTable().getJetons().size(); i++) {
+				if (partieLocale.getTable().getJetons().get(i).getCouleur() == Couleur.NOIR) {
+					tableau[partieLocale.getTable().getJetons().get(i).getIndiceY()][partieLocale.getTable().getJetons()
+							.get(i).getIndiceX()] = 1;
+				} else if (partieLocale.getTable().getJetons().get(i).getCouleur() == Couleur.BLANC) {
+					tableau[partieLocale.getTable().getJetons().get(i).getIndiceY()][partieLocale.getTable().getJetons()
+							.get(i).getIndiceX()] = 2;
+				}
 			}
+			
+			String pointsNoir,nombreTours,pointsBlanc;
+			int taille;
+			
+
+			
+			
+			taille = partieLocale.getTaille();
+			resultats.setGagnant(partieLocale.getQuiCommence());
+			System.out.println(partieLocale.getQuiCommence()+"allo");
+			
+			
+			resultats.setTaille(partieLocale.getTaille());
+			resultats.setTableau(tableau);
+			AfficheurResultats afficheurResultats = new AfficheurResultats();
+
+			VueResultats vueResultats = chargeur.getVue();
+			
+			pointsNoir = resultats.getNoir();
+			pointsBlanc = resultats.getBlanc();
+		
+			
+			vueResultats.setTexte(pointsBlanc,pointsNoir,taille);
+
+
+
+			FabriqueControleur.creerControleur(ControleurResultats.class, resultats, vueResultats, afficheurResultats);
 		}
-		
-		resultats.setTableau(tableau);
-		
-		resultats.setTaille(partieLocale.getTaille());
-		
-		AfficheurResultats afficheurResultats = new AfficheurResultats();
-		
-		VueResultats vueResultats = chargeur.getVue();
-		
-		FabriqueControleur.creerControleur(ControleurResultats.class, 
-				                           resultats, 
-				                           vueResultats, 
-				                           afficheurResultats);
-	}
 	  
 	  private void instancierControleurReplay() {
 		J.appel(this);
@@ -337,6 +352,7 @@ public class ControleurAccueil extends ControleurVue<VueAccueil> {
 		partieLocale = EntrepotDeModeles.creerModele(PartieLocale.class, ID_MODELE_PAR_DEFAUT);
 		partieLocale.setTaille(parametres.getTailleTable().getTaille());
 		partieLocale.setCouleurCourante(parametres.getQuiCommence());
+		partieLocale.setQuiCommence(parametres.getQuiCommence());
 	}
 	
 	private void initierNouvellePartieReseau() {

@@ -28,6 +28,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 import static GO.Constantes.*;
 
 public class VueResultats implements Vue, Initializable {
@@ -43,15 +45,39 @@ public class VueResultats implements Vue, Initializable {
 	@FXML
 	private VBox conteneurResultats;
 
+	@FXML
+	private Text blanc,noir,verdicte,taille;
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		DoitEtre.nonNul(quitter);
-		DoitEtre.nonNul(accueil);
-		
-
 		J.appel(this);
 
+		DoitEtre.nonNul(quitter);
+		DoitEtre.nonNul(accueil);
+		DoitEtre.nonNul(blanc);
+		
+
 	}
+	
+	
+	public void setTexte(String blancs, String noirs, int Taille) {
+		blanc.setText(blancs);
+		noir.setText(noirs);
+		
+		 float b,n;
+		 b = Float.parseFloat(blancs);
+		 n = Float.parseFloat(noirs);
+		 
+		 if (b>n) {
+			
+			 verdicte.setText(" Blanc");
+		 } else if (n>b) {
+			 verdicte.setText(" Noir");
+		 }
+		 
+		 taille.setText("" + Taille + " * " + Taille);
+	}
+
 
 	@Override
 	public void obtenirCommandesPourEnvoi() {
@@ -72,7 +98,7 @@ public class VueResultats implements Vue, Initializable {
 				fermerResultats.envoyerCommande();
 			}
 		});
-		
+	
 		quitter.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {

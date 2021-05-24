@@ -7,32 +7,36 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" alignment="center"
-	styleClass="conteneurPrincipal"
-    fx:controller="GO.pages.resultats.VueResultats">
+<VBox xmlns:fx="http://javafx.com/fxml" alignment="center" styleClass="conteneurPrincipal" fx:controller="GO.pages.resultats.vues.VueResultats"  VBox.vgrow="ALWAYS">
+	<HBox VBox.vgrow="ALWAYS">
+		<VBox xmlns:id="conteneurTableResultats" styleClass="resultats" HBox.hgrow="ALWAYS">
 
-    <VBox fx id="conteneurTableResultats">
+			<HBox alignment="CENTER" VBox.vgrow="ALWAYS"> 
+				<Text textAlignment="CENTER" styleClass="result" text="%Verdicte"/>
+				<Text textAlignment="CENTER" styleClass="result" text=" N/A" fx:id="verdicte" />
+			</HBox>
+			<HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+				<Text textAlignment="CENTER" styleClass="result"  text="%pionsBlanc"/>
+				<Text textAlignment="CENTER" styleClass="result"  text=" N/A" fx:id="blanc"/>
+			</HBox>
+			<HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+				<Text textAlignment="CENTER" styleClass="result" text="%pionsNoirs"/>
+				<Text textAlignment="CENTER" styleClass="result"  text=" N/A" fx:id="noir"/>
+			</HBox>
+			<HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+				<Text textAlignment="CENTER"  styleClass="result" text = "Komi:"/> 
+				<Text textAlignment="CENTER" styleClass="result"  text=" 0.5" fx:id="komi"/>
+			</HBox>
+			<HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+				<Text textAlignment="CENTER" styleClass="result" text = "%TailleGrille"/>
+				<Text textAlignment="CENTER" styleClass="result"  text=" N/A" fx:id="taille"/>
+			</HBox>
+		</VBox>
+	</HBox>
 
-    	<HBox alignment="CENTER">
-    		<Text textAlignment="CENTER" text="Verdict :"/>
-    	</HBox>
-        <HBox alignment="CENTER">
-			<Text textAlignment="CENTER" text="Nombre de pions blanc :"/>
-    	</HBox>
-    	<HBox alignment="CENTER">
-    		<Text textAlignment="CENTER" text="Nombre de pions noir :"/>
-    	</HBox>
-    	<HBox alignment="CENTER">
-    		<Text textAlignment="CENTER" styleclass = "komi" text = "Komi :"/>
-    	</HBox>
-    	<HBox alignment="CENTER">
-    		<Text textAlignment="CENTER" text = "Taille de la grille : "/>
-    	</HBox>
-    </VBox>
-    
-     <HBox alignment="center">
-        <Button text="Acceuil" fx:id="accueil" />
-        <Button text="Quitter" fx:id="quitter" />
-    </HBox>
-    
+	<HBox alignment="center">
+		<Button text="%Acceuil" fx:id="accueil" />
+		<Button text="%quitter" fx:id="quitter" />
+	</HBox>
+
 </VBox>

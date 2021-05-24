@@ -10,10 +10,10 @@ import ntro.debogage.J;
 public class Table implements TableLectureSeule {
 	
 	private List<Jeton> jetons = new ArrayList<>();
-	private List<Jeton> HistoriqueJetons = new ArrayList<>();
-	private Couleur[][] liste;
-	private int[][] id;
-	private int size;
+	private List<Jeton> HistoriqueCoup = new ArrayList<>();
+	private transient Couleur[][] liste;
+	private transient int[][] id;
+	private transient int size;
 
 	public void apresCreation(int size) {
 		J.appel(this);
@@ -40,7 +40,7 @@ public class Table implements TableLectureSeule {
 		jeton.setIndiceX(X);
 		
 		jetons.add(jeton);
-		HistoriqueJetons.add(jeton);
+		HistoriqueCoup.add(jeton);
 		
 		if(jeton.getCouleur()==Couleur.BLANC) {
 			liste[X][Y] = Couleur.BLANC;

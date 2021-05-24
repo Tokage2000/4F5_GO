@@ -14,6 +14,6 @@ Philippe Monette, Charles Albert Choupin, Mohammed Hafdi Idrissi, Mohammed Dahin
 | Replay | GO_Replay |    Philippe Monette + Charles Albert Choupin | À besoin d'acceuil pour fonctionner|
 | Parametres | GO_Parametres |    Mohammed Hafdi Idrissi ||
 | Parametres Anglais | GO_ParametresEn |    Mohammed Hafdi Idrissi ||
-| Resultats | GO_Resultats |    Mohammed Dahinine ||
+| Resultats | GO_Resultats |    Mohammed Dahinine | À besoin d'acceuil pour fonctionner|
 | Resultats Anglais | GO_ResultatsEn |    Mohammed Dahinine ||
 | Serveur | GO_Serveur |    Tous ||
